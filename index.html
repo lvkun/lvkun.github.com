@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
 
   <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame 
-       Remove this if you use the .htaccess -->
+     Remove this if you use the .htaccess -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
   <title>Bruce's Blog</title>
@@ -24,11 +24,40 @@
   <script type="text/javascript" src="js/highlight.pack.js"></script>
   
   <!-- Include stylesheet files -->
-  <link rel="stylesheet" type="text/css" href="css/blog.css"/>
+  <link rel="stylesheet" type="text/css" href="css/style.css"/>
+  <!-- Highlight js stylesheet file -->
   <link rel="stylesheet" type="text/css" href="css/default.css"/>
 </head>
 
 <body>
-  
+  <div id="container">  
+    <div id="header">
+      <div id="menu">
+      <ul>
+        <li>
+          <a href="/" id="blog-link" title="blog">博客</a>
+        </li>
+        <li>
+          <a href="#about" id="about-link" title="About">关于</a>
+        </li>
+        <li>
+          <a href="http://github.com/lvkun" target="_blank" title="GitHub" rel="me" id="github-link">GitHub</a>
+        </li>
+        <li>
+          <a href="http://weibo.com/brucelv" title="微博" target="_blank" id="weibo-link">微博</a>
+        </li>
+      </ul>          
+      </div>
+
+      <h1>
+        <!-- 主标题 -->
+        <a id="lnkBlogTitle" href="/">步进</a>
+        <!-- 子标题 -->
+        <small>不积跬步无以至千里</small>
+      </h1>
+    </div>
+    <div id="wraper"></div>
+    <div id="footer"></div>
+  </div>
 </body>
 </html>
