@@ -48,9 +48,15 @@ h1 {
     float: left;
     margin-left: 10px;
 }
+#menu ul li.current a{
+    text-decoration: underline;
+}
 
 /* wraper part */
 #wraper {
     min-height: 400px;
     height: 400px;
+    background-image: url(../icons/ajax-loader.gif);
+    background-repeat:no-repeat;
+    background-position:center;
 }
