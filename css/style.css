@@ -54,8 +54,7 @@ h1 {
 
 /* wraper part */
 #wraper {
-    min-height: 400px;
-    height: 400px;
+    min-height: 600px;
     background-image: url(../icons/ajax-loader.gif);
     background-repeat:no-repeat;
     background-position:center;
