@@ -53,9 +53,17 @@ h1 {
 }
 
 /* wraper part */
-#wraper {
+#wrapper {
     min-height: 600px;
     background-image: url(../icons/ajax-loader.gif);
     background-repeat:no-repeat;
     background-position:center;
+    
+    text-align: left;
+    margin: 10px;
+}
+
+div.post {
+    min-height: 600px;
+    background-color: white;
 }
