@@ -44,7 +44,7 @@ var blog = {
                 }
                 
                 if(i<blog.posts.length-1){
-                    // not first post
+                    // not last post
                     blog.updateHref("next_a", blog.posts[i+1].path);
                 }
                 else{
