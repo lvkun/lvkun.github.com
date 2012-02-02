@@ -48,22 +48,32 @@ h1 {
     float: left;
     margin-left: 10px;
 }
-#menu ul li.current a{
-    text-decoration: underline;
-}
 
 /* wraper part */
 #wrapper {
     min-height: 600px;
     background-image: url(../icons/ajax-loader.gif);
-    background-repeat:no-repeat;
-    background-position:center;
-    
+    background-repeat: no-repeat;
+    background-position: center;
     text-align: left;
     margin: 10px;
 }
+.panel ul {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+.panel ul li {
+    display: inline;
+}
+.panel ul li.next {
+    float: right;
+}
+a.noref {
+    color: gray;
+}
 
-div.post {
+div#post {
     min-height: 600px;
     background-color: white;
 }
