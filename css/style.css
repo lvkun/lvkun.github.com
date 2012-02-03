@@ -11,9 +11,12 @@ body {
     background: #fff url(../icons/header_bg.gif) repeat-x top;
 }
 a {
-    color: #583;
+    color: gray;
     font-weight: bold;
     text-decoration: none;
+}
+a[href] {
+    color: #583;
 }
 h1 {
     margin: 0;
@@ -21,7 +24,13 @@ h1 {
     font-size: 3em;
     color: #11557C;
 }
-/*  header part */
+
+
+div#container {
+    min-height: 800px;
+}
+
+/* header part */
 #header {
     height: 140px;
 }
@@ -48,6 +57,34 @@ h1 {
     float: left;
     margin-left: 10px;
 }
+
+/* index part */
+#index {
+    min-height: 600px;
+}
+
+#index-list {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    display: block;
+}
+
+.index-item-row {
+    text-align: left;
+    list-style: none;
+    border-bottom:thin solid gray;
+    padding: 0px;
+    height: 40px;
+}
+
+.index-item-row li {
+    float: left;
+    display: block;
+    margin: 10px;
+    width: 300px;
+}
+
 
 /* wraper part */
 #wrapper {
@@ -77,11 +114,7 @@ h1 {
 .panel ul li.next {
     float: right;
 }
-a.noref {
-    color: gray;
-}
 
 div#post {
-    min-height: 600px;
     background-color: white;
 }
