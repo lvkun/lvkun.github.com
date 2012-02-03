@@ -62,9 +62,17 @@ h1 {
     list-style: none;
     margin: 0px;
     padding: 0px;
+    text-align: center;
 }
 .panel ul li {
     display: inline;
+}
+.panel ul li.prev{
+    float: left;
+}
+.panel ul li.main {
+    text-align: center;
+    margin: 0 auto;
 }
 .panel ul li.next {
     float: right;

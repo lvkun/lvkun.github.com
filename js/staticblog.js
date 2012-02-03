@@ -23,10 +23,12 @@ var blog = {
         });
     },
     updateHref : function(aClass, path){
-        $("."+aClass).attr("href", "#"+path);
-        $("."+aClass).removeClass("noref");
-        if(path.length == 0){
-            $("."+aClass).addClass("noref");
+        if(path.length == 0) {
+            $("." + aClass).removeAttr("href");
+            $("." + aClass).addClass("noref");
+        } else {
+            $("." + aClass).attr("href", "#" + path);
+            $("." + aClass).removeClass("noref");
         }
     },
     postLoaded : function(data) {
