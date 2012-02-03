@@ -1,5 +1,20 @@
+function removeDuplicate(arr){
+    var map = {};
+    var ret_arr = [];
+    $(arr).each(function(){
+        if(map[this] == undefined){
+            map[this] = this;
+            ret_arr.push(this.toString());
+        }
+        
+    });
+
+    return ret_arr;
+}
+
 var blog = {
-    posts : null,
+    posts: null,
+    post_tags: [],
     current_path: "",
     con: new Showdown.converter(),
     updateIndex: function() {
@@ -14,8 +29,10 @@ var blog = {
             $(this.tags).each(function(){
                 $("<a class='post-tag-href'>").appendTo($post_tags).text(this.toString()+";").attr("href", "##"+this.toString());
             });
-            //$("<ul class='index-seperator'>").appendTo($("#index-list"));
+            blog.post_tags = blog.post_tags.concat(this.tags);
         });
+        
+        blog.post_tags = removeDuplicate(blog.post_tags)
     },
     showIndex: function() {
         $("#wrapper").hide();
