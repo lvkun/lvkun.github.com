@@ -11,8 +11,6 @@ function removeDuplicate(arr){
     return ret_arr;
 }
 
-var disqus_identifier = location.hash.replace(/^#/, '' );;
-
 var blog = {
     /* member variable */
     posts: null,
