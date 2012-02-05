@@ -143,7 +143,7 @@ var blog = {
         $("#post").html("");
         
         $.ajax({
-            url : "_post/" + blog.current_path + ".md",
+            url : "post/" + blog.current_path + ".md",
             dataType : 'text',
             success : blog.postLoaded
         });
