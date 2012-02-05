@@ -24,16 +24,23 @@ var blog = {
         var should_show = false;
         if(blog.filter_tags.length > 0){
             for(var i in blog.filter_tags){
+                should_show = false;
+                
                 for(var j in tags){
                     if(blog.filter_tags[i] == tags[j]){
                         should_show = true;
+                        break;
                     }
+                }
+                if(!should_show){
+                    return should_show;
                 }
             }
         }
         else{
             should_show = true;
         }
+        
         return should_show;
     },
     updateIndexItem: function(post_index_data){
@@ -47,7 +54,41 @@ var blog = {
         $(post_index_data.tags).each(function(){
             $("<a class='post-tag-href'>").appendTo($post_tags).text(this.toString()+";").attr("href", "#@"+this.toString());
         });
-        blog.post_tags = blog.post_tags.concat(post_index_data.tags);
+    },
+    initTagPanel: function(){
+        $("#tag-panel-list").html("");
+        
+        $(blog.posts).each(function(){
+            blog.post_tags = blog.post_tags.concat(this.tags);
+        });
+
+        blog.post_tags = removeDuplicate(blog.post_tags);
+        
+        $("<li class='tag-item'><a id='tag-all' class='tag-href' href='#'>"+"全部/All"+"</a></li>").appendTo($("#tag-panel-list"));
+
+        $(blog.post_tags).each(function(){
+            var $tag_item = $("<li class='tag-item'></li>").appendTo($("#tag-panel-list"));
+            var $tag_href = $("<a class='tag-href'>").appendTo($tag_item).text(this.toString());
+            $tag_href.attr("id", this.toString());
+            $tag_href.click(function(){
+                if($(this).hasClass("selected")){
+                    location.hash = location.hash.replace("@"+$(this).attr("id"), "");
+                }else{
+                    location.hash += "@"+$(this).attr("id");
+                }
+            });
+        });
+    },
+    updataTagPanel: function(){
+        $(".tag-href").removeClass("selected");
+        
+        if(blog.filter_tags.length == 0){
+            $("#tag-all").addClass("selected");
+        }
+        
+        $(blog.filter_tags).each(function(){
+            $("#"+this.toString()).addClass("selected");
+        });
     },
     updateIndex: function() {
         // clear index content
@@ -63,11 +104,19 @@ var blog = {
             blog.updateIndexItem(this);
         });
         
-        blog.post_tags = removeDuplicate(blog.post_tags);
+        blog.updataTagPanel();
     },
     showIndex: function() {
         $("#wrapper").hide();
         $("#index").show();
+    },
+    showPost: function() {
+        $("#index").hide();
+        $("#wrapper").show();
+    },
+    hideAll: function() {
+        $("#index").hide();
+        $("#wrapper").hide();    
     },
     updateContent : function() {
         // load post or show index according to location.hash
@@ -88,9 +137,8 @@ var blog = {
             return;
         }
         
-        $("#index").hide();
-        $("#wrapper").show();
-        
+        blog.showPost();
+               
         // clear exist content
         $("#post").html("");
         
@@ -140,6 +188,9 @@ var blog = {
             console.log("no post exist");
             return;
         }
+        
+        blog.hideAll();
+        blog.initTagPanel();
 
         blog.updateContent();
 
