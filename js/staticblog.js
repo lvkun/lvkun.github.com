@@ -203,7 +203,7 @@ var blog = {
 $(document).ready(function() {
     // load post index
     $.ajax({
-        url : "_post/index.json",
+        url : "post/index.json",
         dataType : 'json',
         success : blog.indexLoaded
     });
