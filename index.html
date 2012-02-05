@@ -33,7 +33,7 @@
       <div id="menu">
       <ul>
         <li class="current">
-          <a href="#" id="blog-link" title="blog">博客</a>
+          <a href="#!" id="blog-link" title="blog">博客</a>
         </li>
         <li>
           <a href="#about" id="about-link" title="About">关于</a>
@@ -67,7 +67,7 @@
                     <a class="prev-a noref">上一篇</a>
                 </li>
                 <li class="main">
-                    <a href="#">回目录</a>
+                    <a href="#!">回目录</a>
                 </li>
                 <li class="next">
                     <a class="next-a noref">下一篇</a>
@@ -75,14 +75,13 @@
             </ul>
         </div>
         <div id="post"></div>
-        <div id="disqus_thread"></div>
-        <div class="panel">
+                <div class="panel">
             <ul>
                 <li class="prev">
                     <a class="prev-a noref">上一篇</a>
                 </li>
                 <li class="main">
-                    <a href="#">回目录</a>
+                    <a href="#!">回目录</a>
                 </li>
                 <li class="next">
                     <a class="next-a noref">下一篇</a>
@@ -90,13 +89,14 @@
             </ul>
         </div>
     </div>
+    <div id="disqus_thread"></div>
     <div id="footer"></div>
   </div>
-  <script type="text/javascript" src="js/staticblog.js"></script>
+    <script type="text/javascript" src="js/staticblog.js"></script>
     <script type="text/javascript">
         /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
         var disqus_shortname = 'blogofbruce'; // required: replace example with your forum shortname
-        var disqus_identifier = location.hash.replace(/^#/, '' );
+
         /* * * DON'T EDIT BELOW THIS LINE * * */
         (function() {
             var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

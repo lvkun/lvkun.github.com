@@ -47,7 +47,7 @@ var blog = {
         var $item_value_list = $("<ul class='index-item-row'>").appendTo($("#index-list"));
             
         var $post_title = $("<li class='post-title'>").appendTo($item_value_list);
-        $("<a>").appendTo($post_title).text(post_index_data.title).attr("href", "#"+post_index_data.path);
+        $("<a>").appendTo($post_title).text(post_index_data.title).attr("href", "#!"+post_index_data.path);
         
         $("<li class='post-date'>").appendTo($item_value_list).text(post_index_data.date);
         var $post_tags = $("<li class='post-tags'>").appendTo($item_value_list);
@@ -64,7 +64,7 @@ var blog = {
 
         blog.post_tags = removeDuplicate(blog.post_tags);
         
-        $("<li class='tag-item'><a id='tag-all' class='tag-href' href='#'>"+"全部/All"+"</a></li>").appendTo($("#tag-panel-list"));
+        $("<li class='tag-item'><a id='tag-all' class='tag-href' href='#!'>"+"全部/All"+"</a></li>").appendTo($("#tag-panel-list"));
 
         $(blog.post_tags).each(function(){
             var $tag_item = $("<li class='tag-item'></li>").appendTo($("#tag-panel-list"));
@@ -109,10 +109,30 @@ var blog = {
     showIndex: function() {
         $("#wrapper").hide();
         $("#index").show();
+        
+        if(typeof(DISQUS) != "undefined") {
+            DISQUS.reset({
+                reload : true,
+                config : function() {
+                    this.page.identifier = "";
+                    this.page.url = location.href;
+                }
+            });
+        }
     },
     showPost: function() {
         $("#index").hide();
         $("#wrapper").show();
+
+        if(typeof(DISQUS) != "undefined") {
+            DISQUS.reset({
+                reload : true,
+                config : function() {
+                    this.page.identifier = blog.current_path;
+                    this.page.url = location.href;
+                }
+            });
+        }
     },
     hideAll: function() {
         $("#index").hide();
@@ -121,15 +141,14 @@ var blog = {
     updateContent : function() {
         // load post or show index according to location.hash
         var hash = location.hash;
-        blog.current_path = hash.replace(/^#/, '' );
-        disqus_identifier = blog.current_path;
+        blog.current_path = hash.replace(/^#/, '' ).replace(/^!/, '');
         var tags = blog.current_path.split("@");
         
         blog.filter_tags = [];
         if(tags.length > 1){
             blog.filter_tags = blog.filter_tags.concat(tags.slice(1));
         }
-        
+
         blog.updateIndex();
         
         if(blog.current_path.length == 0 || blog.filter_tags.length > 0) {
@@ -152,7 +171,7 @@ var blog = {
         if(path.length == 0) {
             $("." + aClass).removeAttr("href");
         } else {
-            $("." + aClass).attr("href", "#" + path);
+            $("." + aClass).attr("href", "#!" + path);
         }
     },
     
