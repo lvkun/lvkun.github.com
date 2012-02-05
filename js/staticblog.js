@@ -11,6 +11,8 @@ function removeDuplicate(arr){
     return ret_arr;
 }
 
+var disqus_identifier = location.hash.replace(/^#/, '' );;
+
 var blog = {
     /* member variable */
     posts: null,
@@ -122,7 +124,7 @@ var blog = {
         // load post or show index according to location.hash
         var hash = location.hash;
         blog.current_path = hash.replace(/^#/, '' );
-        
+        disqus_identifier = blog.current_path;
         var tags = blog.current_path.split("@");
         
         blog.filter_tags = [];
