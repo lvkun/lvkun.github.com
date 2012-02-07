@@ -4,10 +4,12 @@ body {
     margin: 0 auto;
     min-width: 740px;
     width: 960px;
+    
     -moz-border-radius: 1.5em;
     -webkit-border-radius: 1.5em;
     border-radius: 1.5em;
     border: 1px solid #AAA;
+    
     background: #fff url(../icons/header_bg.gif) repeat-x top;
 }
 a {
@@ -76,6 +78,7 @@ a.tag-href {
     padding: 10px;
     cursor: pointer;
     
+    border-radius: 1.5em;
     -moz-border-radius: 1.5em;
     -webkit-border-radius: 1.5em;
 }

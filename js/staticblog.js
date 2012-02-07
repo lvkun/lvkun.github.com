@@ -4,7 +4,7 @@ function removeDuplicate(arr){
     $(arr).each(function(){
         if(map[this] == undefined){
             map[this] = this;
-            ret_arr.push(this.toString());
+            ret_arr.push(this);
         }
     });
 
@@ -52,7 +52,8 @@ var blog = {
         $("<li class='post-date'>").appendTo($item_value_list).text(post_index_data.date);
         var $post_tags = $("<li class='post-tags'>").appendTo($item_value_list);
         $(post_index_data.tags).each(function(){
-            $("<a class='post-tag-href'>").appendTo($post_tags).text(this.toString()+";").attr("href", "#@"+this.toString());
+            // Seems </a> must be added in IE
+            $("<a class='post-tag-href'></a>").appendTo($post_tags).text(this+";").attr("href", "#@"+this);
         });
     },
     initTagPanel: function(){
@@ -68,8 +69,12 @@ var blog = {
 
         $(blog.post_tags).each(function(){
             var $tag_item = $("<li class='tag-item'></li>").appendTo($("#tag-panel-list"));
-            var $tag_href = $("<a class='tag-href'>").appendTo($tag_item).text(this.toString());
-            $tag_href.attr("id", this.toString());
+            // Seems </a> must be added in IE
+            var $tag_href = $("<a class='tag-href'></a>").appendTo($tag_item);
+            // TODO: Just try out, don't know why
+            $tag_href.text(this.toString());
+            $tag_href.attr("id", this);
+            
             $tag_href.click(function(){
                 if($(this).hasClass("selected")){
                     location.hash = location.hash.replace("@"+$(this).attr("id"), "");
@@ -87,7 +92,7 @@ var blog = {
         }
         
         $(blog.filter_tags).each(function(){
-            $("#"+this.toString()).addClass("selected");
+            $("#"+this).addClass("selected");
         });
     },
     updateIndex: function() {
