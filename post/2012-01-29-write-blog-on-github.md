@@ -6,7 +6,8 @@
 
 * 不够专注
 
-  工作和生活上的事情有很多，很难一次性写完一篇长的博客；常常会没有思路，或者突如其来的一些事情打断了写作。
+  工作和生活上的事情有很多，很难一次性写完一篇长的博客；
+  常常会没有思路，或者突如其来的一些事情打断了写作。
   
 * 更喜欢用本地工具
   
@@ -18,31 +19,62 @@
 
 * 其实更喜欢写代码
   
-  作为程序员，往往写代码的时候很快乐，而写文档的时候很痛苦。
+  作为程序员，写代码的时候很快乐，而写文档的时候很痛苦。
 
 ### 转向Github
 
-虽然很早就听说了Git，但是2011年才开始学习和使用Git，主要还是因为公司要将版本管理工具从Synergy转向Git。在学习过程中接触到了Github。我眼中的大牛[刘未鹏]的文章[《怎样花两年时间去面试一个人》]，让我认识到Github是程序员展示自己的最佳网站。而[蒋鑫]老师的文章[用 Git 维护博客？酷！]启发了我使用Git Page服务来展示自己的博客。
+虽然很早就听说了Git，但是2011年才开始学习和使用Git，
+主要还是因为公司要将版本管理工具从Synergy转向Git。
+在学习过程中接触到了Github。我眼中的大牛[刘未鹏]的文章[《怎样花两年时间去面试一个人》]，
+让我认识到Github是程序员展示自己的最佳网站。
+而[蒋鑫]老师的文章[用 Git 维护博客？酷！]启发了我使用Git Page服务来展示自己的博客。
 
 ### 使用Git Page
 
-在Github上创建个人主页非常方便，只要创建一个名为(user-id).github.com的版本库，并将自己编写的网页文件推送到master分支即可。
+在Github上创建个人主页非常方便，只要创建一个名为(user-id).github.com的版本库，
+并将自己编写的网页文件推送到master分支即可。
 
-[用 Git 维护博客？酷！]中有成熟的解决方案[Jekyll]，不过本人厌恶生成过程，更懒得装Ruby环境（本人是坚定的Python拥护者），就自己写了个简单静态页面，通过javascript代码动态加载markdown格式的博客文章，在前台转换成html展示。这样只需要文本编辑器和Git即可方便的进行维护（在添加新博文时，需要手动维护index.json）。
+[用 Git 维护博客？酷！]中有成熟的解决方案[Jekyll]，不过本人厌恶生成过程，
+更懒得装Ruby环境（本人是坚定的Python拥护者），就自己写了个简单的静态页面，
+通过javascript代码动态加载markdown格式的博客文章，在前台转换成html展示。
+这样只需要文本编辑器和Git即可方便的进行维护（在添加新博文时，需要手动维护index.json）。
 
 对网页样式一直很苦恼，第一不熟悉，第二做不到美观，借用了[蒋鑫]老师的部分样式，希望不要介意 :)
 
-### 相关实现细节
+### 优点
+
+* 使用Markdown格式，感觉有点像写代码，而且不容易因为格式调整打断思路。
+* 可以写一部分提交一次，git保存了完整的提交历史，让自己的思路更有延续性。
+* 使用写字板和git就可以维护此博客。
+
+### 部分细节
+
+* 导航
+
+  本博客的文章使用[Markdown]格式保存在post目录下，路径（path）的命名格式为(date)-(title).md。
+  使用[jQuery hashChange]插件获取hashChange事件，
+  并且通过location.hash来判断应该显示某篇文章还是博客目录。
+  
+  * 显示目录： (页面地址)
+  
+  * 使用Tag过滤（显示同时有Tag1，Tag2，...标签的文章）： (页面地址)+(#!)+(@Tag1)+(@Tag2)+...
+  
+  * 显示某篇文章： (页面地址)+(#!)+(path)
 
 * [Markdown]
 
-  本博客的文章使用[Markdown]格式保存在post目录下，命名格式为(date)-(title).md。使用showdown.js进行动态
-  
-* Hash
+  如果当前需要显示某篇文章，通过location.hash获取文章路径。
+  请求后，使用[showdown.js]进行转换，并插入到页面中。
 
 * 评论
 
-本人在工作中一直使用C/C++，网页开发还没有入门。如果博客上有什么Bug，请及时指出，万分感谢。另外如果大家对以下话题感兴趣，尽可以找我讨论：
+  采用[Disqus]评论系统。参照[Universal Code]，在页面中添加相应代码即可。
+  另外就是切换文章时，需要参照[Using Disqus on AJAX sites]，重新加载Disqus thread。
+
+### 题外话
+
+本人在工作中一直使用C/C++，网页开发还没有入门。如果博客上有什么Bug，请及时指出，万分感谢。
+另外如果大家对以下话题感兴趣，尽可以找我讨论：
 
 * Git
 * C/C++
@@ -57,3 +89,8 @@
 [蒋鑫]: http://www.worldhello.net/about.html
 [用 Git 维护博客？酷！]: http://www.worldhello.net/2011/11/29/jekyll-based-blog-setup.html
 [Jekyll]: https://github.com/mojombo/jekyll
+[showdown.js]: https://github.com/coreyti/showdown
+[jQuery hashChange]: http://benalman.com/projects/jquery-hashchange-plugin/
+[Disqus]: http://disqus.com
+[Universal Code]: http://docs.disqus.com/developers/universal/
+[Using Disqus on AJAX sites]: http://docs.disqus.com/help/85/
