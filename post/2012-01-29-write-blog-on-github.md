@@ -70,6 +70,13 @@
 
   采用[Disqus]评论系统。参照[Universal Code]，在页面中添加相应代码即可。
   另外就是切换文章时，需要参照[Using Disqus on AJAX sites]，重新加载Disqus thread。
+  
+* 代码高亮
+
+  使用[highlight.js]，文章加载完成后，高亮所有代码模块：
+  
+        $('pre code').each(function(i, e) {hljs.highlightBlock(e, '    ')});
+  
 
 ### 题外话
 
@@ -95,3 +102,4 @@
 [Disqus]: http://disqus.com
 [Universal Code]: http://docs.disqus.com/developers/universal/
 [Using Disqus on AJAX sites]: http://docs.disqus.com/help/85/
+[highlight.js]： https://github.com/isagalaev/highlight.js
