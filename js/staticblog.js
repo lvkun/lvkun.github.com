@@ -204,6 +204,8 @@ var blog = {
                 }
             }
         }
+
+        $('pre code').each(function(i, e) {hljs.highlightBlock(e, '    ')});
     },
     indexLoaded : function(data) {
         blog.posts = data;
@@ -230,5 +232,5 @@ $(document).ready(function() {
         url : "post/index.json",
         dataType : 'json',
         success : blog.indexLoaded
-    });
+    });  
 });
