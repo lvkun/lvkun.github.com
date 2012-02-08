@@ -9,5 +9,10 @@
         "path": "about",
         "tags": ["about"],
         "date": "2012-01-29"    
+    },{
+        "title": "gSoap使用笔记",
+        "path": "2010-03-30-gsoap-note",
+        "tags": ["gSoap", "C/C++"],
+        "date": "2010-03-30"    
     }
 ]
