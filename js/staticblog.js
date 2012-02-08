@@ -14,9 +14,11 @@ function removeDuplicate(arr){
 var blog = {
     /* member variable */
     posts: null,
+    title: document.title,
     post_tags: [],
     filter_tags: [],
     current_path: "",
+    current_index: 0,
     con: new Showdown.converter(),
     
     /* functions */
@@ -124,10 +126,42 @@ var blog = {
                 }
             });
         }
+        
+        document.title = blog.title;
+    },
+    findPostIndex: function() {
+        for(i = 0; i < blog.posts.length; i++) {
+            if(blog.posts[i].path == blog.current_path) {
+                blog.current_index = i;
+                break;
+            }
+        }
+    },
+    updateNavPanel: function() {
+        if(blog.current_index > 0) {
+            // not first post
+            blog.updateHref("prev-a", blog.posts[blog.current_index - 1].path);
+        } else {
+            blog.updateHref("prev-a", "");
+        }
+
+        if(blog.current_index < blog.posts.length - 1) {
+            // not last post
+            blog.updateHref("next-a", blog.posts[blog.current_index + 1].path);
+        } else {
+            blog.updateHref("next-a", "");
+        }
     },
     showPost: function() {
         $("#index").hide();
         $("#wrapper").show();
+        
+        blog.findPostIndex();
+        blog.updateNavPanel();
+        
+        if(blog.posts[blog.current_index]){
+            document.title = blog.posts[blog.current_index].title;
+        }
 
         if(typeof(DISQUS) != "undefined") {
             DISQUS.reset({
@@ -179,32 +213,13 @@ var blog = {
             $("." + aClass).attr("href", "#!" + path);
         }
     },
+
     
     /* event handler */
     postLoaded : function(data) {
         var post_content = blog.con.makeHtml(data);
         $("#post").html(post_content);
         
-        for(i=0; i<blog.posts.length; i++){
-            if(blog.posts[i].path == blog.current_path){
-                if(i>0){
-                    // not first post
-                    blog.updateHref("prev-a", blog.posts[i-1].path);
-                }
-                else{
-                    blog.updateHref("prev-a", "");
-                }
-                
-                if(i<blog.posts.length-1){
-                    // not last post
-                    blog.updateHref("next-a", blog.posts[i+1].path);
-                }
-                else{
-                    blog.updateHref("next-a", "");
-                }
-            }
-        }
-
         $('pre code').each(function(i, e) {hljs.highlightBlock(e, '    ')});
     },
     indexLoaded : function(data) {
