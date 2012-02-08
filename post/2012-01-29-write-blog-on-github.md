@@ -89,6 +89,9 @@
 * Python
 * Javascript
 
+附： [博客园]支持发布html代码，写完文章后可以打开chrome开发视图，找到div#post节点，
+复制其中html代码。在[博客园]的后台，找到编辑HTML源代码选项，打开窗口，粘贴进去即可，非常方便。
+
 [博客园]: http://lvkun.cnblogs.com
 [reStructuredText]: http://docutils.sourceforge.net/rst.html
 [Markdown]: http://daringfireball.net/projects/markdown/
