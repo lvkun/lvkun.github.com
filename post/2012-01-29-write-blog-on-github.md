@@ -102,4 +102,4 @@
 [Disqus]: http://disqus.com
 [Universal Code]: http://docs.disqus.com/developers/universal/
 [Using Disqus on AJAX sites]: http://docs.disqus.com/help/85/
-[highlight.js]： https://github.com/isagalaev/highlight.js
+[highlight.js]: https://github.com/isagalaev/highlight.js
