@@ -10,6 +10,11 @@
         "tags": ["about"],
         "date": "2012-01-29"    
     },{
+        "title": "在MFC程序中显示WPF窗口",
+        "path": "2010-04-20-show-wpf-window-in-mfc",
+        "tags": ["WPF", "MFC", "C#", "C/C++"],
+        "date": "2010-04-20"    
+    },{
         "title": "gSoap使用笔记",
         "path": "2010-03-30-gsoap-note",
         "tags": ["gSoap", "C/C++"],
