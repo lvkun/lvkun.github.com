@@ -105,7 +105,7 @@ a.selected {
 .index-item-row {
     text-align: left;
     list-style: none;
-    border-bottom:thin solid gray;
+    border-bottom: 3px double #EEE;
     padding: 0px;
     height: 40px;
 }
