@@ -75,26 +75,28 @@ var blog = {
             var $tag_href = $("<a class='tag-href'></a>").appendTo($tag_item);
             // TODO: Just try out, don't know why
             $tag_href.text(this.toString());
-            $tag_href.attr("id", this);
+            //$tag_href.attr("id", this.replace(/#/g, ""));
             
             $tag_href.click(function(){
                 if($(this).hasClass("selected")){
-                    location.hash = location.hash.replace("@"+$(this).attr("id"), "");
+                    location.hash = location.hash.replace("@"+$(this).text(), "");
                 }else{
-                    location.hash += "@"+$(this).attr("id");
+                    location.hash += "@"+$(this).text();
                 }
             });
         });
     },
     updataTagPanel: function(){
         $(".tag-href").removeClass("selected");
-        
+        $("#current-tag").html("");
         if(blog.filter_tags.length == 0){
             $("#tag-all").addClass("selected");
+            $("#tag-all").clone().appendTo($("#current-tag")).removeClass("selected");
         }
         
         $(blog.filter_tags).each(function(){
-            $("#"+this).addClass("selected");
+            var $tag_href = $("a.tag-href:contains("+this+")").addClass("selected");
+            $tag_href.clone().appendTo($("#current-tag")).removeClass("selected");
         });
     },
     updateIndex: function() {
@@ -235,8 +237,13 @@ var blog = {
 
         blog.updateContent();
 
+        // Event handler
         $(window).hashchange(function() {
             blog.updateContent();
+        });
+        $("#tag-panel-list").hide(); 
+        $("#current-tag-list").click(function() {
+           $("#tag-panel-list").slideToggle('fast'); 
         });
     }
 }
