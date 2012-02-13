@@ -94,6 +94,32 @@ div#container {
     display: inline-block;
 }
 
+#extend-list-item {
+    float: right;
+    display: block;
+} 
+
+#extend-button {
+    display: block;
+    width: 16px;
+    height: 16px;
+}
+
+.extend-down {
+    background-image: url(../icons/down.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.extend-up {
+    display: block;
+    background-image: url(../icons/up.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+
 /*#current-tag-list a {
     color: white;
     cursor: pointer;
@@ -115,7 +141,7 @@ a.tag-href {
     -webkit-border-radius: 1.5em;
 }
 
-a.tag-href:hover {
+#tag-panel-list a.tag-href:hover {
     background-color: #105CB6;
 }
 

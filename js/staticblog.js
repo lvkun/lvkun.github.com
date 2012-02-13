@@ -75,7 +75,6 @@ var blog = {
             var $tag_href = $("<a class='tag-href'></a>").appendTo($tag_item);
             // TODO: Just try out, don't know why
             $tag_href.text(this.toString());
-            //$tag_href.attr("id", this.replace(/#/g, ""));
             
             $tag_href.click(function(){
                 if($(this).hasClass("selected")){
@@ -244,6 +243,7 @@ var blog = {
         $("#tag-panel-list").hide(); 
         $("#current-tag-list").click(function() {
            $("#tag-panel-list").slideToggle('fast'); 
+           $("#extend-button").toggleClass("extend-up");
         });
     }
 }
