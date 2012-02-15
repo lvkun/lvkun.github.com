@@ -92,7 +92,11 @@ var blog = {
         
         $(blog.filter_tags).each(function(){
             var $tag_href = $("a.tag-href:contains("+this+")").addClass("selected");
-            $tag_href.clone().appendTo($("#current-tag")).removeClass("selected");
+            $tag_href = $tag_href.clone().appendTo($("#current-tag")).removeClass("selected");
+            $tag_href.click(function(e){
+                location.hash = location.hash.replace("@"+$(this).text(), "");
+                e.stopPropagation();
+            });
         });
     },
     updateIndex: function() {

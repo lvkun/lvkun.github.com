@@ -129,7 +129,7 @@ a.tag-href {
     -webkit-border-radius: 1.5em;
 }
 
-#tag-panel-list a.tag-href:hover {
+a.tag-href:hover {
     background-color: #105CB6;
 }
 
