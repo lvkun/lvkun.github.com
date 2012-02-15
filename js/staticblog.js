@@ -200,6 +200,7 @@ var blog = {
         blog.showPost();
                
         // clear exist content
+        $("#post").addClass('background-transparent');
         $("#post").html("");
         
         $.ajax({
@@ -221,6 +222,7 @@ var blog = {
     postLoaded : function(data) {
         var post_content = blog.con.makeHtml(data);
         $("#post").html(post_content);
+        $("#post").removeClass('background-transparent');
         
         $('pre code').each(function(i, e) {hljs.highlightBlock(e, '    ')});
     },

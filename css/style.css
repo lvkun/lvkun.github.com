@@ -207,8 +207,15 @@ li.post-title {
     float: right;
 }
 
+
+.background-white {
+    background-color: white;
+}
+.background-transparent {
+    background-color: transparent;
+}
 div#post {
     min-height: 600px;
-    background-color: white;
+    
     font-family: Microsoft Yahei, Monokai
 }
