@@ -210,4 +210,5 @@ li.post-title {
 div#post {
     min-height: 600px;
     background-color: white;
+    font-family: Microsoft Yahei, Monokai
 }
