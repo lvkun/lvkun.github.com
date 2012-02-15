@@ -1,27 +1,28 @@
-function removeDuplicate(arr){
-    var map = {};
-    var ret_arr = [];
-    $(arr).each(function(){
-        if(map[this] == undefined){
-            map[this] = this;
-            ret_arr.push(this);
-        }
-    });
-
-    return ret_arr;
-}
-
 var blog = {
     /* member variable */
     posts: null,
     title: document.title,
-    post_tags: [],
+    post_tags: {},
     filter_tags: [],
     current_path: "",
     current_index: 0,
     con: new Showdown.converter(),
     
-    /* functions */
+    /* utility functions */
+    initPostTags: function() {
+        var all_tags = [];
+        $(blog.posts).each(function() {
+            all_tags = all_tags.concat(this.tags);
+        });
+        blog.post_tags = {};
+        $(all_tags).each(function() {
+            if(blog.post_tags[this] == undefined) {
+                blog.post_tags[this] = 1;
+            } else {
+                blog.post_tags[this] += 1;
+            }
+        });
+    },
     filterPost: function(tags){
         var should_show = false;
         if(blog.filter_tags.length > 0){
@@ -61,20 +62,16 @@ var blog = {
     initTagPanel: function(){
         $("#tag-panel-list").html("");
         
-        $(blog.posts).each(function(){
-            blog.post_tags = blog.post_tags.concat(this.tags);
-        });
-
-        blog.post_tags = removeDuplicate(blog.post_tags);
+        blog.initPostTags();
         
         $("<li class='tag-item'><a id='tag-all' class='tag-href' href='#!'>"+"全部/All"+"</a></li>").appendTo($("#tag-panel-list"));
 
-        $(blog.post_tags).each(function(){
+        $.each(blog.post_tags, function(key, value){
             var $tag_item = $("<li class='tag-item'></li>").appendTo($("#tag-panel-list"));
             // Seems </a> must be added in IE
             var $tag_href = $("<a class='tag-href'></a>").appendTo($tag_item);
             // TODO: Just try out, don't know why
-            $tag_href.text(this.toString());
+            $tag_href.text(key.toString());
             
             $tag_href.click(function(){
                 if($(this).hasClass("selected")){
