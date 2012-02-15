@@ -118,18 +118,6 @@ div#container {
     background-position: center;
 }
 
-
-
-/*#current-tag-list a {
-    color: white;
-    cursor: pointer;
-    background-color: #105CB6;
-    
-    border-radius: 1.5em;
-    -moz-border-radius: 1.5em;
-    -webkit-border-radius: 1.5em;
-}*/
-
 a.tag-href {
     color: white;
     background-color: #88B9F3;
@@ -169,7 +157,10 @@ a.selected {
     float: left;
     display: block;
     margin: 10px;
-    width: 300px;
+}
+
+li.post-title {
+    width: 500px; 
 }
 
 
