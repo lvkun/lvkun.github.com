@@ -1,5 +1,10 @@
 [
     {
+        "title": "Python 对象内存占用",
+        "path": "2012-02-20-python-object-memory-usage",
+        "tags": ["python", "memory"],
+        "date": "2012-02-20"
+    },{
         "title": "在Github上写博客",
         "path": "2012-01-29-write-blog-on-github",
         "tags": ["github", "blog", "markdown"],
