@@ -207,7 +207,7 @@ li.post-title {
     float: right;
 }
 
-
+/* post part */
 .background-white {
     background-color: white;
 }
@@ -218,4 +218,10 @@ div#post {
     min-height: 600px;
     
     font-family: Microsoft Yahei, Monokai
+}
+
+#post code {
+    border: 1px solid #EAEAEA;
+    background-color: #F8F8F8;
+    border-radius: 3px;
 }
