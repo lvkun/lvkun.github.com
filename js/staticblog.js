@@ -6,6 +6,7 @@ var blog = {
     filter_tags: [],
     current_path: "",
     current_index: 0,
+    current_state: "", // post/index
     con: new Showdown.converter(),
     
     /* utility functions */
@@ -118,15 +119,21 @@ var blog = {
     showIndex: function() {
         $("#wrapper").hide();
         $("#index").show();
-        
-        if(typeof(DISQUS) != "undefined") {
-            DISQUS.reset({
-                reload : true,
-                config : function() {
-                    this.page.identifier = "";
-                    this.page.url = location.href;
-                }
-            });
+        console.log("blog.current_state: " + blog.current_state);
+        if(blog.current_state != "index"){
+            if(typeof(DISQUS) != "undefined") {
+                DISQUS.reset({
+                    reload : true,
+                    config : function() {
+                        console.log("reload DISQUS: identifier: !");
+                        
+                        this.page.identifier = "!";
+                        this.page.url = location.href;
+                    }
+                });
+            }
+            
+            blog.current_state = "index";
         }
         
         document.title = blog.title;
@@ -169,11 +176,16 @@ var blog = {
             DISQUS.reset({
                 reload : true,
                 config : function() {
-                    this.page.identifier = blog.current_path;
+                    
+                    console.log("reload DISQUS: identifier: !" + blog.current_path);
+                    
+                    this.page.identifier = "!" + blog.current_path;
                     this.page.url = location.href;
                 }
             });
         }
+        
+        blog.current_state = "post";
     },
     hideAll: function() {
         $("#index").hide();
