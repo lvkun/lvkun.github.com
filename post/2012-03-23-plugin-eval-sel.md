@@ -70,7 +70,7 @@ Sublime的插件中含有一个或多个命令（Command）。每个命令的具
 
 在 Sublime 中，可以使用 Python 的大部分标准类库。这种情况可以使用 subprocess 启动一个子进程，传递字符串到子进程的 stdin ，并从子进程的 stdout 获取结果。
 
-1. 启动子进程
+###### 启动子进程
 
         self.process = subprocess.Popen(evaluator, 
                     stdin=subprocess.PIPE, 
@@ -81,14 +81,14 @@ evaluator 是用来启动解释器的参数列表，一般是解释器的路径�
 
 将 ``stdin/stdout`` 设置为 ``subprocess.PIPE`` ，则表明打开指向 ``stdin/stdout`` 管道。
 
-2. 将表达式传递给子进程
+###### 将表达式传递给子进程
 
 子进程的 ``stdin/stdout`` 可以当做标准的文件对象进行读写。 采用交互模式时，在写入后，要注意调用 ``flush`` 刷新缓存。
 
         self.process.stdin.write(expression + "\n")
         self.process.stdin.flush()
 
-3. 从子进程获取结果
+###### 从子进程获取结果
 
 从 ``stdout`` 读取内容时，需注意读取时会被阻塞，所以要在另一个线程中读取。这里实现了简单的读取线程。
 
@@ -114,12 +114,24 @@ evaluator 是用来启动解释器的参数列表，一般是解释器的路径�
 
 ##### 输出结果
 
-Sublime 为插件提供了 ``output_panel`` ，相当一个特殊的 view 对象。 需要通过 window 对象的接口，获取 ``output_panel`` 对象。并且
+Sublime 为插件提供了 ``output_panel`` ，相当一个特殊的 view 对象。 需要通过 window 对象的接口，获取 ``output_panel`` 对象。
 
         def show_output_view(self):
             if not self.output_view:
                 self.output_view = self.view.window().get_output_panel("evalsel")
             self.view.window().run_command('show_panel', {'panel': 'output.evalsel'})
+
+插入代码：
+
+        def output(self, info):
+            self.output_view.set_read_only(False)
+            edit = self.output_view.begin_edit()
+            
+            self.output_view.insert(edit, self.output_view.size(), info)
+            self.scroll_to_view_end()
+
+            self.output_view.end_edit(edit)
+            self.output_view.set_read_only(True)
 
 ### 发布
 
