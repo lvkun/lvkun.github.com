@@ -1,5 +1,10 @@
 [
     {
+        "title": "翻译： Waf 教程",
+        "path": "2012-03-27-trans-waf-tutorial",
+        "tags": ["python", "waf", "tutorial", "build"],
+        "date": "2012-03-23"
+    },{
         "title": "Sumlime text 2 插件： Eval Sel",
         "path": "2012-03-23-plugin-eval-sel",
         "tags": ["python", "sublime", "plugin"],
