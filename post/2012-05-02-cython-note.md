@@ -34,7 +34,7 @@
 
 #### Unable to find vcvarsall.bat
 
-编译时提示 error: Unable to find vcvarsall.bat 。将其路径加入 Path 环境变量也无法解决。在 [Cython FAQ] 中找到解决方案，如果没有使用 pyximport ，正好也安装了 cygwin 。
+编译时提示 error: Unable to find vcvarsall.bat 。已经安装VC，并且将该 bat 文件路径加入 Path 环境变量也无法解决问题。在 [Cython FAQ] 中找到解决方案，如果没有使用 pyximport ，又安装了 cygwin ，可以在编译参数加上参数 --compiler=mingw32 来解决问题。
 
 [Cython FAQ]: http://wiki.cython.org/FAQ#HowdoIworkaroundthe.22unabletofindvcvarsall.bat.22errorwhenusingMinGWasthecompiler.28onWindows.29.3F
 
