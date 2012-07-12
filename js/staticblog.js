@@ -6,6 +6,14 @@
 
     function IndexRender(args) {}
 
+    IndexRender.prototype.show = function() {
+      return console.log("IndexRender show");
+    };
+
+    IndexRender.prototype.hide = function() {
+      return console.log("IndexRender hide");
+    };
+
     return IndexRender;
 
   })();
@@ -13,6 +21,10 @@
   IndexLoader = (function() {
 
     function IndexLoader(args) {}
+
+    IndexLoader.prototype.load = function(callback) {
+      return console.log("IndexLoader load");
+    };
 
     return IndexLoader;
 
@@ -22,6 +34,14 @@
 
     function PostRender(args) {}
 
+    PostRender.prototype.show = function() {
+      return console.log("PostRender show");
+    };
+
+    PostRender.prototype.hide = function() {
+      return console.log("PostRender hide");
+    };
+
     return PostRender;
 
   })();
@@ -30,6 +50,10 @@
 
     function PostLoader(args) {}
 
+    PostLoader.prototype.load = function(callback) {
+      return console.log("PostLoader load");
+    };
+
     return PostLoader;
 
   })();
@@ -37,19 +61,27 @@
   StateManager = (function() {
 
     function StateManager(args) {
-      var loaders, renders;
-      renders = {
+      this.renders = {
         index: new IndexRender(),
         post: new PostRender()
       };
-      loaders = {
+      this.loaders = {
         index: new IndexLoader(),
         post: new PostLoader()
       };
     }
 
-    StateManager.prototype.init = function() {
-      return console.log("StateManager init");
+    StateManager.prototype.get_state = function() {
+      var path;
+      path = location.hash.replace(/^#/, '').replace(/^!/, '');
+      if (path.length === 0 || path.indexOf("@") !== -1) return "index";
+      return "post";
+    };
+
+    StateManager.prototype.update = function() {
+      if (this.state) this.renders[this.state].hide();
+      this.state = this.get_state();
+      return this.loaders[this.state].load(this.renders[this.state].show);
     };
 
     return StateManager;
@@ -59,7 +91,7 @@
   state = new StateManager();
 
   $(document).ready(function() {
-    return state.init();
+    return state.update();
   });
 
 }).call(this);
