@@ -1,6 +1,7 @@
 class IndexRender
 
     constructor: ->
+        this.title = document.title
 
     get_filter_tags: ->
         path = location.hash.replace(/^#/, '' ).replace(/^!/, '')
@@ -119,6 +120,9 @@ class IndexRender
                 location.hash = location.hash.replace "@"+$(this).text(), ""
                 e.stopPropagation()
 
+    update_title: ->
+        document.title = this.title
+
     init: (index_data) ->
         this.index_data = index_data
         this.post_tags = this.get_post_tags index_data
@@ -129,6 +133,7 @@ class IndexRender
         
         this.update_index()
         this.update_current_tag_panel()
+        this.update_title()
 
         $("#index").show()
 
@@ -161,8 +166,11 @@ class Index
     is_loaded: ->
         return this.loaded
 
-    get_data: ->
+    get_data: =>
         return this.data
+
+    get_title: ->
+        return this.title
 
     hide: ->
         this.render.hide()
@@ -170,22 +178,80 @@ class Index
 class PostRender
 
     constructor: (args) ->
+        this.converter = new Showdown.converter()
     
-    init: ->
-        console.log "PostRender init"
+    init: (post_data, info, prev, next)->
+        this.post_data = post_data
+        this.post_info = info
+        this.prev = prev
+        this.next = next
+
+    update_nav_panel: ->
+        this.update_nav_href "prev-a", if this.prev? then this.prev.path else ""
+        this.update_nav_href "next-a", if this.next then this.next.path else ""
+
+    update_nav_href: (aClass, path)->
+        if path.length == 0
+            $("." + aClass).removeAttr "href"
+        else
+            $("." + aClass).attr "href", "#!"+path
+
+    update_highlight: ->
+        $('pre code').each (i, e)-> 
+            hljs.highlightBlock e, '    '
+
+    update_content: ->
+        $("#post").html this.converter.makeHtml this.post_data
+
+    update_title: ->
+        document.title = this.post_info.title
 
     update: ->
-        console.log "PostRender update"
+        this.update_nav_panel()
+        this.update_content()
+        this.update_highlight()
+        this.update_title()
+        
+        $("#post").removeClass 'background-transparent'
+        $("#wrapper").show()
 
     hide: ->
-        $("#wrapper").hide();
+        $("#wrapper").hide()
+
+    clear: ->
+        # clear exist content
+        $("#post").addClass 'background-transparent';
+        $("#post").html ""
 
 class Post
 
-    constructor: (args) ->
+    constructor: (index_data) ->
         this.render = new PostRender()
+        this.index_data = index_data
+
+    get_post_index: ->
+        for post, i in this.index_data()
+            if post.path == this.path
+                return i
 
     update: ->
+        this.render.clear()
+
+        this.path = location.hash.replace(/^#/, '' ).replace(/^!/, '')
+        $.ajax
+            url : "post/" + this.path + ".md",
+            dataType : 'text',
+            success : this.on_success
+
+    on_success: (data) =>
+        this.post_index = this.get_post_index()
+        this.post_data = data
+
+        this.render.init(data,
+            this.index_data()[this.post_index]
+            this.index_data()[this.post_index-1],
+            this.index_data()[this.post_index+1])
+        this.render.update()
 
     hide: ->
         this.render.hide()
@@ -194,7 +260,7 @@ class StateManager
     
     constructor: ->
         this.index = new Index()
-        this.post = new Post()
+        this.post = new Post(this.index.get_data)
 
         this.post.hide()
 
@@ -211,14 +277,17 @@ class StateManager
             return
         
         # hide previous state content
-        if this.state
-            this[this.state].hide()
+        this.state = this.get_state()
+
+        if this.state == "index"
+            this.post.hide()
+        else
+            this.index.hide()
 
         if !this.index.is_loaded()
             # index should be loaded at first
             this.index.load(this.update)
         else
-            this.state = this.get_state()
             this[this.state].update()
 
 state = new StateManager()
