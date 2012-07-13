@@ -1,3 +1,11 @@
+resetDisqus = (identifier) ->
+    if DISQUS?
+        DISQUS.reset
+            reload : true,
+            config : ->
+                this.page.identifier = "!"+identifier
+                this.page.url = location.href
+
 class IndexRender
 
     constructor: ->
@@ -136,6 +144,7 @@ class IndexRender
         this.update_title()
 
         $("#index").show()
+        resetDisqus ""
 
     hide: ->
         $("#index").hide()
@@ -214,6 +223,8 @@ class PostRender
         
         $("#post").removeClass 'background-transparent'
         $("#wrapper").show()
+
+        resetDisqus ""
 
     hide: ->
         $("#wrapper").hide()
