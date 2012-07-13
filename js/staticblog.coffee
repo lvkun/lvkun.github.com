@@ -143,17 +143,26 @@ class Index
 
     on_success: (data) =>
         this.loaded = true
+        this.data = data
         this.render.init(data)
-        this.render.update()
+        this.callback()
 
     update: ->
         if this.loaded
-          this.render.update()
-        else
-            $.ajax
-                url : "post/index.json",
-                dataType : 'json',
-                success : this.on_success
+            this.render.update()
+
+    load: (callback) ->
+        this.callback = callback
+        $.ajax
+            url : "post/index.json",
+            dataType : 'json',
+            success : this.on_success
+
+    is_loaded: ->
+        return this.loaded
+
+    get_data: ->
+        return this.data
 
     hide: ->
         this.render.hide()
@@ -177,7 +186,6 @@ class Post
         this.render = new PostRender()
 
     update: ->
-        console.log "PostLoader load"
 
     hide: ->
         this.render.hide()
@@ -197,22 +205,21 @@ class StateManager
 
         return "post"
 
-    loaded: (data) =>
-        this.data[this.state] = data
-        this.renders[this.state].update(data)
-
-    update: ->
+    update: =>
         if location.hash.length == 0
-            location.hash += "#!"
+            location.hash += "#!" 
             return
-
+        
         # hide previous state content
         if this.state
             this[this.state].hide()
-        
-        this.state = this.get_state()
 
-        this[this.state].update()
+        if !this.index.is_loaded()
+            # index should be loaded at first
+            this.index.load(this.update)
+        else
+            this.state = this.get_state()
+            this[this.state].update()
 
 state = new StateManager()
 
