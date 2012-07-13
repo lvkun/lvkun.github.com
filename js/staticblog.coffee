@@ -79,7 +79,7 @@ class IndexRender
 
             this.add_index_item(post)
 
-    update_tag_panel: ->
+    init_tag_panel: ->
         this.clear_tag_panel()
         $("<li class='tag-item'><a id='tag-all' class='tag-href' href='#!'>全部/All</a></li>").appendTo $("#tag-panel-list")
 
@@ -93,7 +93,13 @@ class IndexRender
                     location.hash = location.hash.replace "@" + $(this).text(), ""
                 else
                     location.hash += "@" + $(this).text()
-            
+
+        $("#tag-panel-list").hide();
+
+        $("#current-tag-list").click ->
+            $("#tag-panel-list").slideToggle "fast"
+            $("#extend-button").toggleClass "extend-up"
+
     update_current_tag_panel: ->
         this.clear_current_tag_panel()
 
@@ -113,18 +119,15 @@ class IndexRender
                 location.hash = location.hash.replace "@"+$(this).text(), ""
                 e.stopPropagation()
 
-        $("#current-tag-list").click ->
-            $("#tag-panel-list").slideToggle "fast"
-            $("#extend-button").toggleClass "extend-up"
-
-    show: (index_data) ->
+    init: (index_data) ->
         this.index_data = index_data
-
-        this.filter_tags = this.get_filter_tags()
         this.post_tags = this.get_post_tags index_data
+        this.init_tag_panel()
+
+    update: ->
+        this.filter_tags = this.get_filter_tags()
         
         this.update_index()
-        this.update_tag_panel()
         this.update_current_tag_panel()
 
         $("#index").show()
@@ -132,45 +135,60 @@ class IndexRender
     hide: ->
         $("#index").hide()
   
-class IndexLoader
+class Index
 
     constructor: (args) ->
+        this.render = new IndexRender()
+        this.loaded = false
 
-    load: (callback) ->
-        $.ajax
-            url : "post/index.json",
-            dataType : 'json',
-            success : callback
+    on_success: (data) =>
+        this.loaded = true
+        this.render.init(data)
+        this.render.update()
+
+    update: ->
+        if this.loaded
+          this.render.update()
+        else
+            $.ajax
+                url : "post/index.json",
+                dataType : 'json',
+                success : this.on_success
+
+    hide: ->
+        this.render.hide()
 
 class PostRender
 
     constructor: (args) ->
     
-    show: ->
-        console.log "PostRender show"
+    init: ->
+        console.log "PostRender init"
+
+    update: ->
+        console.log "PostRender update"
 
     hide: ->
-        console.log "PostRender hide"
+        $("#wrapper").hide();
 
-class PostLoader
+class Post
 
     constructor: (args) ->
+        this.render = new PostRender()
 
-    load: (callback) ->
+    update: ->
         console.log "PostLoader load"
+
+    hide: ->
+        this.render.hide()
 
 class StateManager
     
     constructor: ->
-        this.renders = 
-            index: new IndexRender()
-            post: new PostRender()
+        this.index = new Index()
+        this.post = new Post()
 
-        this.loaders = 
-            index: new IndexLoader()
-            post: new PostLoader()
-
-        this.data = {}
+        this.post.hide()
 
     get_state: ->
         path = location.hash.replace(/^#/, '' ).replace(/^!/, '')
@@ -181,16 +199,20 @@ class StateManager
 
     loaded: (data) =>
         this.data[this.state] = data
-        this.renders[this.state].show(data)
+        this.renders[this.state].update(data)
 
     update: ->
+        if location.hash.length == 0
+            location.hash += "#!"
+            return
+
         # hide previous state content
         if this.state
-            this.renders[this.state].hide()
+            this[this.state].hide()
         
         this.state = this.get_state()
 
-        this.loaders[this.state].load this.loaded
+        this[this.state].update()
 
 state = new StateManager()
 
