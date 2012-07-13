@@ -1,13 +1,14 @@
 (function() {
   var IndexLoader, IndexRender, PostLoader, PostRender, StateManager, state,
+    __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
     _this = this;
 
   IndexRender = (function() {
 
-    function IndexRender(args) {}
+    function IndexRender() {}
 
-    IndexRender.prototype.show = function() {
-      return console.log("IndexRender show");
+    IndexRender.prototype.show = function(index_data) {
+      return console.log(index_data);
     };
 
     IndexRender.prototype.hide = function() {
@@ -23,7 +24,11 @@
     function IndexLoader(args) {}
 
     IndexLoader.prototype.load = function(callback) {
-      return console.log("IndexLoader load");
+      return $.ajax({
+        url: "post/index.json",
+        dataType: 'json',
+        success: callback
+      });
     };
 
     return IndexLoader;
@@ -60,8 +65,8 @@
 
   StateManager = (function() {
 
-    function StateManager(args) {
-      this.renders = {
+    function StateManager() {
+      this.loaded = __bind(this.loaded, this);      this.renders = {
         index: new IndexRender(),
         post: new PostRender()
       };
@@ -69,6 +74,7 @@
         index: new IndexLoader(),
         post: new PostLoader()
       };
+      this.data = {};
     }
 
     StateManager.prototype.get_state = function() {
@@ -78,10 +84,15 @@
       return "post";
     };
 
+    StateManager.prototype.loaded = function(data) {
+      this.data[this.state] = data;
+      return this.renders[this.state].show(data);
+    };
+
     StateManager.prototype.update = function() {
       if (this.state) this.renders[this.state].hide();
       this.state = this.get_state();
-      return this.loaders[this.state].load(this.renders[this.state].show);
+      return this.loaders[this.state].load(this.loaded);
     };
 
     return StateManager;
@@ -91,6 +102,10 @@
   state = new StateManager();
 
   $(document).ready(function() {
+    return state.update();
+  });
+
+  $(window).hashchange(function() {
     return state.update();
   });
 

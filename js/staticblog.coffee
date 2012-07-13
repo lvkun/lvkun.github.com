@@ -1,9 +1,9 @@
 class IndexRender
 
-    constructor: (args) ->
+    constructor: ->
 
-    show: ->
-        console.log "IndexRender show"
+    show: (index_data) ->
+        console.log index_data
 
     hide: ->
         console.log "IndexRender hide"
@@ -13,7 +13,10 @@ class IndexLoader
     constructor: (args) ->
 
     load: (callback) ->
-        console.log "IndexLoader load"
+        $.ajax
+            url : "post/index.json",
+            dataType : 'json',
+            success : callback
 
 class PostRender
 
@@ -34,7 +37,7 @@ class PostLoader
 
 class StateManager
     
-    constructor: (args) ->
+    constructor: ->
         this.renders = 
             index: new IndexRender()
             post: new PostRender()
@@ -43,12 +46,18 @@ class StateManager
             index: new IndexLoader()
             post: new PostLoader()
 
+        this.data = {}
+
     get_state: ->
         path = location.hash.replace(/^#/, '' ).replace(/^!/, '')
         if path.length == 0 or path.indexOf("@") != -1
             return "index"
 
         return "post"
+
+    loaded: (data) =>
+        this.data[this.state] = data
+        this.renders[this.state].show(data)
 
     update: ->
         # hide previous state content
@@ -58,8 +67,12 @@ class StateManager
         this.state = this.get_state()
 
         # pass function show of render as callback
-        this.loaders[this.state].load this.renders[this.state].show
+        this.loaders[this.state].load this.loaded
 
 state = new StateManager()
+
 $(document).ready =>
+    state.update()
+
+$(window).hashchange =>
     state.update()
