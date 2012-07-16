@@ -18,7 +18,7 @@
 1. 代码简洁，可读性强
 2. 生成的javascript代码经过优化，且比较规范。
 3. 语法特性少，学习时间短。
-4. 解决了this
+4. 解决了回调中this关键字的问题。
 
 决定以后涉及到javascript的代码都用coffee script代替。
 
@@ -32,3 +32,4 @@
 
 [迁移到 github]: #!2012-01-29-write-blog-on-github
 [Coffee Script]: http://coffeescript.org
+[回调中this关键字]: http://coffeescript.org/#fat_arrow
