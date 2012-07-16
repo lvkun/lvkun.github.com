@@ -1,5 +1,10 @@
 [
     {
+        "title": "使用 Coffee Script 重写博客",
+        "path": "2012-07-16-move-to-coffee",
+        "tags": ["coffeescript", "blog"],
+        "date": "2012-07-16"
+    },{
         "title": "Cython 使用笔记",
         "path": "2012-05-02-cython-note",
         "tags": ["cython", "python", "note"],
