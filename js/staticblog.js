@@ -8,8 +8,11 @@
       return DISQUS.reset({
         reload: true,
         config: function() {
-          this.page.identifier = "!" + identifier;
-          return this.page.url = location.href;
+          this.page.identifier = identifier;
+          if (identifier === "") this.page.identifier = "index";
+          console.log(this.page.identifier);
+          this.page.url = location.href;
+          return this.page.title = document.title;
         }
       });
     }
@@ -270,7 +273,7 @@
       this.update_title();
       $("#post").removeClass('background-transparent');
       $("#wrapper").show();
-      return resetDisqus("");
+      return resetDisqus(location.hash);
     };
 
     PostRender.prototype.hide = function() {
