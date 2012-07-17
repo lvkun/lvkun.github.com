@@ -192,11 +192,8 @@ class PostRender
     constructor: (args) ->
         this.converter = new Showdown.converter()
     
-    init: (post_data, info, prev, next)->
-        this.post_data = post_data
-        this.post_info = info
-        this.prev = prev
-        this.next = next
+    init: ->
+        $("#wrapper").show()
 
     update_nav_panel: ->
         this.update_nav_href "prev-a", if this.prev? then this.prev.path else ""
@@ -218,14 +215,18 @@ class PostRender
     update_title: ->
         document.title = this.post_info.title
 
-    update: ->
+    update: (post_data, info, prev, next)->
+        this.post_data = post_data
+        this.post_info = info
+        this.prev = prev
+        this.next = next
+
         this.update_nav_panel()
         this.update_content()
         this.update_highlight()
         this.update_title()
         
         $("#post").removeClass 'background-transparent'
-        $("#wrapper").show()
 
         resetDisqus location.hash
 
@@ -250,7 +251,8 @@ class Post
 
     update: ->
         this.render.clear()
-
+        this.render.init()
+        
         this.path = location.hash.replace(/^#/, '' ).replace(/^!/, '')
         $.ajax
             url : "post/" + this.path + ".md",
@@ -260,12 +262,11 @@ class Post
     on_success: (data) =>
         this.post_index = this.get_post_index()
         this.post_data = data
-
-        this.render.init(data,
+        
+        this.render.update(data,
             this.index_data()[this.post_index]
             this.index_data()[this.post_index-1],
             this.index_data()[this.post_index+1])
-        this.render.update()
 
     hide: ->
         this.render.hide()

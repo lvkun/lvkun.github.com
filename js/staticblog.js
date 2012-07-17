@@ -10,7 +10,6 @@
         config: function() {
           this.page.identifier = identifier;
           if (identifier === "") this.page.identifier = "index";
-          console.log(this.page.identifier);
           this.page.url = location.href;
           return this.page.title = document.title;
         }
@@ -232,11 +231,8 @@
       this.converter = new Showdown.converter();
     }
 
-    PostRender.prototype.init = function(post_data, info, prev, next) {
-      this.post_data = post_data;
-      this.post_info = info;
-      this.prev = prev;
-      return this.next = next;
+    PostRender.prototype.init = function() {
+      return $("#wrapper").show();
     };
 
     PostRender.prototype.update_nav_panel = function() {
@@ -266,13 +262,16 @@
       return document.title = this.post_info.title;
     };
 
-    PostRender.prototype.update = function() {
+    PostRender.prototype.update = function(post_data, info, prev, next) {
+      this.post_data = post_data;
+      this.post_info = info;
+      this.prev = prev;
+      this.next = next;
       this.update_nav_panel();
       this.update_content();
       this.update_highlight();
       this.update_title();
       $("#post").removeClass('background-transparent');
-      $("#wrapper").show();
       return resetDisqus(location.hash);
     };
 
@@ -307,6 +306,7 @@
 
     Post.prototype.update = function() {
       this.render.clear();
+      this.render.init();
       this.path = location.hash.replace(/^#/, '').replace(/^!/, '');
       return $.ajax({
         url: "post/" + this.path + ".md",
@@ -318,8 +318,7 @@
     Post.prototype.on_success = function(data) {
       this.post_index = this.get_post_index();
       this.post_data = data;
-      this.render.init(data, this.index_data()[this.post_index], this.index_data()[this.post_index - 1], this.index_data()[this.post_index + 1]);
-      return this.render.update();
+      return this.render.update(data, this.index_data()[this.post_index], this.index_data()[this.post_index - 1], this.index_data()[this.post_index + 1]);
     };
 
     Post.prototype.hide = function() {
