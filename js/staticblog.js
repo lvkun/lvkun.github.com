@@ -318,7 +318,8 @@
     Post.prototype.on_success = function(data) {
       this.post_index = this.get_post_index();
       this.post_data = data;
-      return this.render.update(data, this.index_data()[this.post_index], this.index_data()[this.post_index - 1], this.index_data()[this.post_index + 1]);
+      this.render.update(data, this.index_data()[this.post_index], this.index_data()[this.post_index - 1], this.index_data()[this.post_index + 1]);
+      MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
     };
 
     Post.prototype.hide = function() {

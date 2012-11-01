@@ -268,6 +268,9 @@ class Post
             this.index_data()[this.post_index-1],
             this.index_data()[this.post_index+1])
 
+        MathJax.Hub.Queue ["Typeset",MathJax.Hub]
+        return
+
     hide: ->
         this.render.hide()
 
