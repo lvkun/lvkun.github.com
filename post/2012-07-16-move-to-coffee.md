@@ -20,7 +20,7 @@
 3. 语法特性少，学习时间短。
 4. 解决了回调中this关键字的问题。
 
-决定以后涉及到javascript的代码都用coffee script代替。
+决定以后涉及到javascript的代码都用[Coffee Script]代替。
 
 ### 改造结果
 
