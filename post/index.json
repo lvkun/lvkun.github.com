@@ -1,5 +1,10 @@
 [
     {
+        "title": "课程笔记 自然语言处理 介绍",
+        "path": "2012-12-26-nlp-note-intro",
+        "tags": ["Coursera", "nlp", "note"],
+        "date": "2012-12-26"
+    },{
         "title": "开源中文输入法",
         "path": "2012-12-20-open-source-input-method",
         "tags": ["input", "open source"],
@@ -58,21 +63,21 @@
         "title": "关于作者",
         "path": "about",
         "tags": ["about"],
-        "date": "2012-01-29"    
+        "date": "2012-01-29"
     },{
         "title": "初次尝试Chrome扩展开发——以幻灯片方式显示网页内的图片",
         "path": "2011-09-17-chrome-image-gallery",
         "tags": ["Chrome", "Javascript"],
-        "date": "2010-04-20"    
+        "date": "2010-04-20"
     },{
         "title": "在MFC程序中显示WPF窗口",
         "path": "2010-04-20-show-wpf-window-in-mfc",
         "tags": ["WPF", "MFC", "C#", "C/C++"],
-        "date": "2010-04-20"    
+        "date": "2010-04-20"
     },{
         "title": "gSoap使用笔记",
         "path": "2010-03-30-gsoap-note",
         "tags": ["gSoap", "C/C++"],
-        "date": "2010-03-30"    
+        "date": "2010-03-30"
     }
 ]
