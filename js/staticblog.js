@@ -236,8 +236,8 @@
     };
 
     PostRender.prototype.update_nav_panel = function() {
-      this.update_nav_href("prev-a", this.prev != null ? this.prev.path : "");
-      return this.update_nav_href("next-a", this.next ? this.next.path : "");
+      this.update_nav_href("prev-a", (this.prev != null) && (this.prev.path != null) ? this.prev.path : "");
+      return this.update_nav_href("next-a", (this.next != null) && (this.next.path != null) ? this.next.path : "");
     };
 
     PostRender.prototype.update_nav_href = function(aClass, path) {

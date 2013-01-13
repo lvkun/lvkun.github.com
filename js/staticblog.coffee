@@ -26,7 +26,7 @@ class IndexRender
 
     get_post_tags: (index_data) ->
         tags = {}
-        
+
         all_tags = []
         all_tags = all_tags.concat post.tags for post in index_data
 
@@ -37,13 +37,13 @@ class IndexRender
                 tags[tag] = 1
 
         return tags
-    
+
     clear_index: ->
         $("#index-list").html ""
 
     clear_tag_panel: ->
         $("#tag-panel-list").html ""
-        
+
     clear_current_tag_panel: ->
         $("#current-tag").html ""
         $(".tag-href").removeClass "selected"
@@ -54,7 +54,7 @@ class IndexRender
             return true
 
         for filter_tag in this.filter_tags
-            
+
             if $.inArray(filter_tag, post.tags) == -1
                 return false
 
@@ -63,12 +63,12 @@ class IndexRender
     add_index_item: (post) ->
         $item_value_list = $("<ul class='index-item-row'>").appendTo $("#index-list")
         $post_title = $("<li class='post-title'>").appendTo $item_value_list
-        
+
         $("<a>")
             .appendTo($post_title)
             .text(post.title)
             .attr("href", "#!"+post.path)
-        
+
         $("<li class='post-date'>")
             .appendTo($item_value_list)
             .text(post.date)
@@ -85,7 +85,7 @@ class IndexRender
         this.clear_index()
 
         for post in this.index_data
-            
+
             if !this.is_should_show(post)
                 continue
 
@@ -141,7 +141,7 @@ class IndexRender
 
     update: ->
         this.filter_tags = this.get_filter_tags()
-        
+
         this.update_index()
         this.update_current_tag_panel()
         this.update_title()
@@ -151,7 +151,7 @@ class IndexRender
 
     hide: ->
         $("#index").hide()
-  
+
 class Index
 
     constructor: (args) ->
@@ -191,13 +191,13 @@ class PostRender
 
     constructor: (args) ->
         this.converter = new Showdown.converter()
-    
+
     init: ->
         $("#wrapper").show()
 
     update_nav_panel: ->
-        this.update_nav_href "prev-a", if this.prev? then this.prev.path else ""
-        this.update_nav_href "next-a", if this.next then this.next.path else ""
+        this.update_nav_href "prev-a", if this.prev? and this.prev.path? then this.prev.path else ""
+        this.update_nav_href "next-a", if this.next? and this.next.path? then this.next.path else ""
 
     update_nav_href: (aClass, path)->
         if path.length == 0
@@ -206,7 +206,7 @@ class PostRender
             $("." + aClass).attr "href", "#!"+path
 
     update_highlight: ->
-        $('pre code').each (i, e)-> 
+        $('pre code').each (i, e)->
             hljs.highlightBlock e, '    '
 
     update_content: ->
@@ -225,7 +225,7 @@ class PostRender
         this.update_content()
         this.update_highlight()
         this.update_title()
-        
+
         $("#post").removeClass 'background-transparent'
 
         resetDisqus location.hash
@@ -252,7 +252,7 @@ class Post
     update: ->
         this.render.clear()
         this.render.init()
-        
+
         this.path = location.hash.replace(/^#/, '' ).replace(/^!/, '')
         $.ajax
             url : "post/" + this.path + ".md",
@@ -262,7 +262,7 @@ class Post
     on_success: (data) =>
         this.post_index = this.get_post_index()
         this.post_data = data
-        
+
         this.render.update(data,
             this.index_data()[this.post_index]
             this.index_data()[this.post_index-1],
@@ -275,7 +275,7 @@ class Post
         this.render.hide()
 
 class StateManager
-    
+
     constructor: ->
         this.index = new Index()
         this.post = new Post(this.index.get_data)
@@ -291,9 +291,9 @@ class StateManager
 
     update: =>
         if location.hash.length == 0
-            location.hash += "#!" 
+            location.hash += "#!"
             return
-        
+
         # hide previous state content
         this.state = this.get_state()
 
