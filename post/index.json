@@ -1,5 +1,10 @@
 [
     {
+        "title": "Sublime Text 2 : 语法定义文件",
+        "path": "2013-02-27-sublime-syntax-definition",
+        "tags": ["Sublime"],
+        "date": "2012-12-26"
+    },{
         "title": "课程笔记 自然语言处理 介绍",
         "path": "2012-12-26-nlp-note-intro",
         "tags": ["Coursera", "nlp", "note"],
