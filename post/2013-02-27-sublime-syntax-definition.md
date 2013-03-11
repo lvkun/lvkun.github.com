@@ -18,7 +18,7 @@
 
 #### 创建语法定义文件
 
-在Sublime text的菜单选择：Tools | Packages | Package Development | New Syntax Definition
+在Sublime text的菜单选择：Tools | Packages | Package Development | New Syntax Definition，或者可以打开命令面板，输入new，选择z:AAAPackageDev:New Syntax Definition
 
 将其保存到Sublime text的Packages目录下面，文件名后缀设置为.JSON-tmLanguage
 
