@@ -1,227 +1,52 @@
 body {
-    font-family: Rockwell, Verdana, sans-serif;
-    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.container-narrow {
     margin: 0 auto;
-    min-width: 740px;
-    width: 960px;
-    
-    background: #fff url(../icons/header_bg.gif) repeat-x top;
-}
-a {
-    color: gray;
-    font-weight: bold;
-    text-decoration: none;
-}
-a[href] {
-    color: #583;
-}
-h1 {
-    margin: 0;
-    padding: 0.7em 0 0.3em 0;
-    font-size: 3em;
-    color: #11557C;
+    max-width: 940px;
 }
 
-
-div#container {
-    min-height: 800px;
+.header h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 40px;
+    padding-bottom: 19px;
 }
 
-/* header part */
-#header {
-    height: 140px;
-}
-#header h1 {
-    float: left;
-    margin-left: 25px;
-    margin-top: 15px;
-}
-#header h1 small{
-    font-size: 0.4em;
-}
-#menu {
-    float: right;
-}
-#menu ul {
-    list-style: none;
-    margin: 0;
-    text-align: center;
-    margin-top: 75px;
-    margin-right: 25px;
-}
-#menu ul li {
-    display: block;
-    float: left;
-    margin-left: 10px;
-}
-
-/* index part */
-#index {
-    margin: 0px;
-    padding: 0px;
-    min-height: 600px;
-}
-
-/* index-tag part */
-#tag-panel-list {
-    text-align: left;
-    list-style: none;
-    
-    background-color: #88B9F3;
-    margin: 0px;
-    padding: 10px;
-    border: hidden;
-}
-
-#tag-panel-list li {
-    margin: 10px;
-    display: inline-block;
-}
-
-#current-tag-list {
-    text-align: left;
-    list-style: none;
-    
-    background-color: #88B9F3;
-    cursor: pointer;
-    margin: 0px;
-    padding: 10px;
-    border: hidden;
-}
-
-#current-tag-list li {
-    margin: 10px;
-    display: inline-block;
-}
-
-#extend-list-item {
-    float: right;
-    display: block;
-} 
-
-#extend-button {
-    display: block;
-    width: 16px;
-    height: 16px;
-}
-
-.extend-down {
-    background-image: url(../icons/down.png);
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-.extend-up {
-    display: block;
-    background-image: url(../icons/up.png);
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-a.tag-href {
-    color: white;
-    background-color: #88B9F3;
-    padding: 10px;
-    cursor: pointer;
-    
-    border-radius: 1.5em;
-    -moz-border-radius: 1.5em;
-    -webkit-border-radius: 1.5em;
-}
-
-a.tag-href:hover {
-    background-color: #105CB6;
-}
-
-a.selected {
-    background-color: #105CB6;
-}
-
-/* index-item part */
-#index-list {
-    list-style: none;
-    margin: 0px;
-    padding: 0px;
-    display: block;
-}
-
-.index-item-row {
-    text-align: left;
-    list-style: none;
-    border-bottom: 3px double #EEE;
-    padding: 0px;
-    height: 40px;
-}
-
-.index-item-row li {
-    float: left;
-    display: block;
-    margin: 10px;
-}
-
-li.post-title {
-    width: 500px; 
-}
-
-
-/* wraper part */
-#wrapper {
-    min-height: 600px;
-    background-image: url(../icons/ajax-loader.gif);
-    background-repeat: no-repeat;
-    background-position: center;
-    text-align: left;
-    margin-left: 10px;
-    margin-right: 10px;
-}
-.panel ul {
-    list-style: none;
-    margin: 0px;
-    padding: 0px;
-    text-align: center;
-    
-    height: 59px;
-    
-    background-color: #88B9F3;
-}
-.panel ul li {
-    height: 59px;
-    line-height: 59px;
-    display: inline-block;
-}
-.panel ul li a{
-    margin: 10px;
-    height: 59px;
-}
-.panel ul li a[href]{
-    color: white;
-}
-.panel ul li.prev{
-    float: left;
-}
-.panel ul li.main {
-    text-align: center;
+.header {
+    border-bottom: 1px solid #e5e5e5;
+    margin-bottom: 30px;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 20px;
     margin: 0 auto;
-}
-.panel ul li.next {
-    float: right;
-}
-
-/* post part */
-.background-white {
-    background-color: white;
-}
-.background-transparent {
-    background-color: transparent;
-}
-div#post {
-    min-height: 600px;
-    
-    font-family: Microsoft Yahei, Monokai
+    max-width: 940px;
+    background: #fff;
 }
 
-#post code {
-    border: 1px solid #EAEAEA;
-    background-color: #F8F8F8;
-    border-radius: 3px;
+ul {
+    padding: 0;
+    list-style-type: none;
+}
+
+#container {
+    padding-top: 70px;
+}
+
+#tag-panel {
+    margin-bottom: 20px;
+}
+
+.table tbody > tr > th, .table tbody > tr > td {
+     border-top: none;
+ }
+
+.btn > a {
+    color: #fff;
+}
+
+.tag-item {
+    margin: 2px;
 }

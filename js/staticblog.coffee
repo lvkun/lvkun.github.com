@@ -12,7 +12,8 @@ resetDisqus = (identifier) ->
 class IndexRender
 
     constructor: ->
-        this.title = document.title
+        @title = document.title
+        @originHash = location.hash
 
     get_filter_tags: ->
         path = location.hash.replace(/^#/, '' ).replace(/^!/, '')
@@ -61,19 +62,19 @@ class IndexRender
         return true
 
     add_index_item: (post) ->
-        $item_value_list = $("<ul class='index-item-row'>").appendTo $("#index-list")
-        $post_title = $("<li class='post-title'>").appendTo $item_value_list
+        $item_value_list = $("<tr class='index-item-row'>").appendTo $("#index-list")
+        $post_title = $("<td class='post-title'>").appendTo $item_value_list
 
         $("<a>")
             .appendTo($post_title)
             .text(post.title)
             .attr("href", "#!"+post.path)
 
-        $("<li class='post-date'>")
+        $("<td class='post-date'>")
             .appendTo($item_value_list)
             .text(post.date)
 
-        $post_tags = $("<li class='post-tags'>").appendTo $item_value_list
+        $post_tags = $("<td class='post-tags'>").appendTo $item_value_list
 
         for tag in post.tags
             $("<a class='post-tag-href'></a>")
@@ -93,39 +94,42 @@ class IndexRender
 
     init_tag_panel: ->
         this.clear_tag_panel()
-        $("<li class='tag-item'><a id='tag-all' class='tag-href' href='#!'>全部/All</a></li>").appendTo $("#tag-panel-list")
+        $("<li class='tag-item btn btn-info'><a id='tag-all' class='tag-href' href='#!'>All</a></li>").appendTo $("#tag-panel-list")
 
         for key, value of this.post_tags
-            $tag_item = $("<li class='tag-item'></li>").appendTo $("#tag-panel-list")
+            $tag_item = $("<li class='tag-item btn btn-info'></li>").appendTo $("#tag-panel-list")
             $tag_href = $("<a class='tag-href'></a>").appendTo $tag_item
             $tag_href.text key
 
             $tag_href.click ->
                 if $(this).hasClass "selected"
-                    location.hash = location.hash.replace "@" + $(this).text(), ""
+                    location.hash = location.hash.split("@")[0]
                 else
-                    location.hash += "@" + $(this).text()
+                    location.hash = location.hash.split("@")[0] + "@" + $(this).text()
 
         $("#tag-panel-list").hide();
 
-        $("#current-tag-list").click ->
+        $("#extend-btn").click ->
             $("#tag-panel-list").slideToggle "fast"
-            $("#extend-button").toggleClass "extend-up"
+            if $("#extend-img").hasClass "glyphicon-circle-arrow-down"
+                $("#extend-img").removeClass "glyphicon-circle-arrow-down"
+                $("#extend-img").addClass "glyphicon-circle-arrow-up"
+            else
+                $("#extend-img").removeClass "glyphicon-circle-arrow-up"
+                $("#extend-img").addClass "glyphicon-circle-arrow-down"
 
     update_current_tag_panel: ->
         this.clear_current_tag_panel()
 
         if this.filter_tags.length == 0
             $("#tag-all").addClass "selected"
-            $("#tag-all").clone()
-                .appendTo($("#current-tag"))
-                .removeClass("selected")
+            $tag_all = $("#tag-all").clone().removeClass("selected")
+            $tag_all.appendTo($("#current-tag"))
 
         for tag in this.filter_tags
             $tag_href = $("a.tag-href:contains("+tag+")").addClass("selected")
-            $tag_href = $tag_href.clone()
-                .appendTo($("#current-tag"))
-                .removeClass("selected")
+            $tag_href = $tag_href.clone().removeClass("selected")
+            $tag_href.appendTo($("#current-tag"))
 
             $tag_href.click (event) ->
                 location.hash = location.hash.replace "@"+$(this).text(), ""

@@ -16,79 +16,63 @@
   <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
 
   <!-- Include stylesheet files -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+  <link rel="stylesheet" type="text/css" href="css/bootstrap-glyphicons.css"/>
   <link rel="stylesheet" type="text/css" href="css/style.css"/>
   <!-- Highlight js stylesheet file -->
   <link rel="stylesheet" type="text/css" href="css/default.css"/>
 </head>
 
 <body>
-  <div id="container">
-    <div id="header">
-      <div id="menu">
-      <ul>
-        <li class="current">
-          <a href="#!" id="blog-link" title="blog">博客</a>
-        </li>
-        <li>
-          <a href="#!about" id="about-link" title="About">关于</a>
-        </li>
-        <li>
-          <a href="http://github.com/lvkun" target="_blank" title="GitHub" rel="me" id="github-link">GitHub</a>
-        </li>
-        <li>
-          <a href="http://weibo.com/brucelv" title="微博" target="_blank" id="weibo-link">微博</a>
-        </li>
-      </ul>
-      </div>
+  <div class="header navbar-fixed-top">
+    <ul class="nav nav-pills pull-right">
+      <li class="active">
+        <a href="/#!" id="blog-link" title="blog">Blog</a>
+      </li>
+      <li>
+        <a href="/resume/index.html" id="about-link" title="About">Resume</a>
+      </li>
+      <li>
+        <a href="http://github.com/lvkun" target="_blank" title="GitHub" rel="me" id="github-link">GitHub</a>
+      </li>
+      <li>
+        <a href="http://weibo.com/brucelv" title="微博" target="_blank" id="weibo-link">微博</a>
+      </li>
+    </ul>
 
-      <h1>
-        <!-- 主标题 -->
-        <a id="lnkBlogTitle" href="#">步进</a>
-        <!-- 子标题 -->
-        <small>不积跬步无以至千里</small>
-      </h1>
-    </div>
+    <h3 class="page-header text-muted">
+      步进
+      <small>不积跬步无以至千里</small>
+    </h3>
+  </div>
+  <div id="container" class="container-narrow">
+
     <div id="index">
         <div id="tag-panel">
-            <ul id="current-tag-list">
-                <li id="current-tag"></li>
-                <li id="extend-list-item">
-                    <a id="extend-button" class="extend-down">
-                    </a>
-                </li>
-            </ul>
-            <ul id="tag-panel-list"></ul>
+            <div id="current-tag" class="btn btn-info"></div>
+            <button id="extend-btn" class="btn pull-right">
+              <div id="extend-img" class="glyphicon glyphicon-circle-arrow-down"></div>
+            </button>
         </div>
-        <div id="index-list"></div>
+        <ul id="tag-panel-list"></ul>
+        <table id="index-list" class="table table-hover"></table>
     </div>
     <div id="wrapper">
-        <div class="panel">
-            <ul>
-                <li class="prev">
-                    <a class="prev-a noref">上一篇</a>
-                </li>
-                <li class="main">
-                    <a href="#!">回目录</a>
-                </li>
-                <li class="next">
-                    <a class="next-a noref">下一篇</a>
-                </li>
-            </ul>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 text-left"><button class="btn"><a class="prev-a noref">上一篇</a></button></div>
+          <div class="col-lg-4 text-center"><button class="btn"><a href="#!">回目录</a></button></div>
+          <div class="col-lg-4 text-right"><button class="btn"><a class="next-a noref">下一篇</a></button></div>
         </div>
-        <div id="post" class="background-white"></div>
-        <div class="panel">
-            <ul>
-                <li class="prev">
-                    <a class="prev-a noref">上一篇</a>
-                </li>
-                <li class="main">
-                    <a href="#!">回目录</a>
-                </li>
-                <li class="next">
-                    <a class="next-a noref">下一篇</a>
-                </li>
-            </ul>
+      </div>
+      <div id="post" class="background-white"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 text-left"><button class="btn"><a class="prev-a noref">上一篇</a></button></div>
+          <div class="col-lg-4 text-center"><button class="btn"><a href="#!">回目录</a></button></div>
+          <div class="col-lg-4 text-right"><button class="btn"><a class="next-a noref">下一篇</a></button></div>
         </div>
+      </div>
     </div>
     <div id="disqus_thread"></div>
     <div id="footer"></div>
