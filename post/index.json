@@ -1,5 +1,10 @@
 [
     {
+        "title": "杂记",
+        "path": "2013-08-11-things-done-after-last-post",
+        "tags": ["blog", "Coursera","IDE"],
+        "date": "2013-08-12"
+    },{
         "title": "Sublime Text 2 : 语法定义文件",
         "path": "2013-02-27-sublime-syntax-definition",
         "tags": ["Sublime"],
