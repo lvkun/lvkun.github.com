@@ -1,0 +1,17 @@
+<div id="wrapper" ng-controller="PostCtrl">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 text-left"><div class="btn btn-default"><a href="{{prevPostPath}}" class="prev-a">上一篇</a></div></div>
+      <div class="col-lg-4 text-center"><div class="btn btn-default"><a href="#/">回目录</a></div></div>
+      <div class="col-lg-4 text-right"><div class="btn btn-default"><a href="{{nextPostPath}}" class="next-a">下一篇</a></div></div>
+    </div>
+  </div>
+  <div id="post" class="background-white" ng-markdown="postContent"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 text-left"><div class="btn btn-default"><a href="{{prevPostPath}}" class="prev-a">上一篇</a></div></div>
+      <div class="col-lg-4 text-center"><div class="btn btn-default"><a href="#/">回目录</a></div></div>
+      <div class="col-lg-4 text-right"><div class="btn btn-default"><a href="{{nextPostPath}}" class="next-a">下一篇</a></div></div>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app="blog">
 <head>
   <meta charset="utf-8" />
 
@@ -21,65 +21,33 @@
   <link rel="stylesheet" type="text/css" href="css/style.css"/>
   <!-- Highlight js stylesheet file -->
   <link rel="stylesheet" type="text/css" href="css/default.css"/>
+
+  <script type="text/javascript" src="js/angular.min.js"></script>
+  <script type="text/javascript" src="js/angular-sanitize.min.js"></script>
 </head>
 
 <body>
-  <div class="header navbar-fixed-top">
+  <div class="header navbar-fixed-top" ng-controller="HeaderCtrl">
     <ul class="nav nav-pills pull-right">
-      <li class="active">
-        <a href="/#!" id="blog-link" title="blog">Blog</a>
-      </li>
-      <li>
-        <a href="/resume/index.html" id="about-link" title="About">Resume</a>
-      </li>
-      <li>
-        <a href="http://github.com/lvkun" target="_blank" title="GitHub" rel="me" id="github-link">GitHub</a>
-      </li>
-      <li>
-        <a href="http://weibo.com/brucelv" title="微博" target="_blank" id="weibo-link">微博</a>
+      <li ng-repeat="quickLink in quickLinks" ng-class="{'active': $first}">
+        <a href="{{quickLink.href}}">{{quickLink.text}}</a>
       </li>
     </ul>
 
     <h3 class="page-header text-muted">
-      步进
-      <small>不积跬步无以至千里</small>
+      {{title}}
+      <small>{{subTitle}}</small>
     </h3>
   </div>
   <div id="container" class="container-narrow">
+    <div ng-view></div>
 
-    <div id="index">
-        <div id="tag-panel">
-            <div id="current-tag" class="btn btn-info"></div>
-            <button id="extend-btn" class="btn pull-right">
-              <div id="extend-img" class="glyphicon glyphicon-circle-arrow-down"></div>
-            </button>
-        </div>
-        <ul id="tag-panel-list"></ul>
-        <table id="index-list" class="table table-hover"></table>
-    </div>
-    <div id="wrapper">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-4 text-left"><button class="btn"><a class="prev-a noref">上一篇</a></button></div>
-          <div class="col-lg-4 text-center"><button class="btn"><a href="#!">回目录</a></button></div>
-          <div class="col-lg-4 text-right"><button class="btn"><a class="next-a noref">下一篇</a></button></div>
-        </div>
-      </div>
-      <div id="post" class="background-white"></div>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-4 text-left"><button class="btn"><a class="prev-a noref">上一篇</a></button></div>
-          <div class="col-lg-4 text-center"><button class="btn"><a href="#!">回目录</a></button></div>
-          <div class="col-lg-4 text-right"><button class="btn"><a class="next-a noref">下一篇</a></button></div>
-        </div>
-      </div>
-    </div>
+
+
     <div id="disqus_thread"></div>
     <div id="footer"></div>
   </div>
     <!-- Include javascript files -->
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="js/jquery.ba-hashchange.min.js"></script>
     <script type="text/javascript" src="js/showdown.js"></script>
     <script type="text/javascript" src="js/highlight.pack.js"></script>
     <script type="text/x-mathjax-config">
