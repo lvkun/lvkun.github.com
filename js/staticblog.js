@@ -61,27 +61,13 @@
     return indexService;
   });
 
-  app.controller('HeaderCtrl', function($scope) {
-    $scope.title = "步进";
-    $scope.subTitle = "不积跬步无以至千里";
-    return $scope.quickLinks = [
-      {
-        "text": "Blog",
-        "href": "#/"
-      }, {
-        "text": "Resume",
-        "href": "/resume/index.html"
-      }, {
-        "text": "Github",
-        "href": "https://github.com/lvkun"
-      }, {
-        "text": "微博",
-        "href": "http://weibo.com/brucelv"
-      }
-    ];
+  app.controller('HeaderCtrl', function($scope, $http) {
+    return $http.get("config.json").success(function(data) {
+      return $scope.config = data;
+    });
   });
 
-  app.controller('IndexListCtrl', function($scope, $http, $routeParams, indexService) {
+  app.controller('IndexListCtrl', function($scope, $routeParams, indexService) {
     return indexService.async().then(function(data) {
       var buildTagList, tag;
       buildTagList = function(indexData) {

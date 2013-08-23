@@ -1,0 +1,10 @@
+{
+    "title" : "步进",
+    "subTitle" : "不积跬步无以至千里",
+    "quickLinks" : [
+        {"text" : "Blog", "href" : "#/"},
+        {"text" : "Resume", "href" : "/resume/index.html"},
+        {"text" : "Github", "href" : "https://github.com/lvkun"},
+        {"text" : "微博", "href" : "http://weibo.com/brucelv"}
+    ]
+}

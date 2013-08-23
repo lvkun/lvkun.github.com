@@ -39,18 +39,11 @@ app = angular.module('blog', ['ngSanitize'])
             return indexService
         )
 
-app.controller 'HeaderCtrl', ($scope) ->
-    $scope.title = "步进"
-    $scope.subTitle = "不积跬步无以至千里"
+app.controller 'HeaderCtrl', ($scope, $http) ->
+    $http.get("config.json").success (data) ->
+        $scope.config = data
 
-    $scope.quickLinks = [
-        {"text" : "Blog", "href" : "#/"},
-        {"text" : "Resume", "href" : "/resume/index.html"},
-        {"text" : "Github", "href" : "https://github.com/lvkun"},
-        {"text" : "微博", "href" : "http://weibo.com/brucelv"}
-    ];
-
-app.controller 'IndexListCtrl', ($scope, $http, $routeParams, indexService) ->
+app.controller 'IndexListCtrl', ($scope, $routeParams, indexService) ->
 
     indexService.async().then( (data)->
 
