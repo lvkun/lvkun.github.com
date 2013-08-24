@@ -1,0 +1,70 @@
+<div class="row" ng-controller="ResumeCtrl">
+  <div class="col-lg-3">
+    <div id="side-nav" class="sidebar">
+      <ul class="nav sidenav">
+        <li><a href="#/resume#basic-info">Basic Info</a></li>
+        <li><a href="#/resume#education">Education</a></li>
+        <li><a href="#/resume#work-experience">Work Experience</a></li>
+        <li><a href="#/resume#skills">Skills</a></li>
+        <li><a href="#/resume#projects">Side Projects</a></li>
+      </ul>
+    </div>
+  </div>
+  <div id="content" class="col-lg-9">
+    <div id="basic-info" class="jumbotron">
+      <h3>{{resume.basicInfo.name}} <small>{{resume.basicInfo.description}}</small></h3>
+      <p><address><a href="mailto:{{resume.basicInfo.mail}}">{{resume.basicInfo.mail}}</a></address></p>
+    </div>
+    <div id="education" class="panel">
+      <h3>Education</h3>
+      <dl>
+        <div ng-repeat="education in resume.education">
+          <dt>{{education.university}} <small>{{education.college}}</small>
+            <div class="pull-right">{{education.period}}</div>
+          </dt>
+          <dd>
+            {{education.description}}
+          </dd>
+        </div>
+      </dl>
+    </div>
+    <div id="work-experience" class="panel">
+      <h3>Working Experience</h3>
+      <dl>
+        <div ng-repeat="we in resume.workExperience">
+          <dt>{{we.company}} -- {{we.title}}
+            <div class="pull-right">{{we.period}}</div>
+          </dt>
+          <dd>
+            <ul>
+              <li ng-repeat="description in we.description">
+                {{description}}
+              </li>
+            </ul>
+          </dd>
+
+        </div>
+       </dl>
+    </div>
+    <div id="skills" class="panel">
+      <h3>Skills</h3>
+      <dl>
+        <div ng-repeat="skill in resume.skills">
+          <dt>{{skill.category}}</dt>
+          <dd>
+            <span ng-repeat="item in skill.items" class="label" ng-class="{'label-success' : item.proficiency == 'proficient', 'label-warning' : item.proficiency == 'familiar'}">{{item.name}} </span>
+          </dd>
+        </div>
+      </dl>
+    </div>
+    <div id="projects" class="panel">
+      <h3>Side Projects</h3>
+      <dl>
+        <div ng-repeat="project in resume.projects">
+          <dt>{{project.name}}</dt>
+          <dd>{{project.description}}</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</div>

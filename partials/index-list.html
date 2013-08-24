@@ -1,6 +1,6 @@
 <div id="index" ng-controller="IndexListCtrl">
   <div id="tag-panel">
-      <div id="current-tag" class="btn btn-info"><a href="#/">{{currentTag.text}}</a></div>
+      <div id="current-tag" class="btn btn-info"><a href="/">{{currentTag.text}}</a></div>
       <button id="extend-btn" class="btn pull-right">
         <div id="extend-img" class="glyphicon glyphicon-circle-arrow-down"
           ng-click="showTagPanel = !showTagPanel"></div>
@@ -16,7 +16,7 @@
       <td class="post-title"><a href="#/post/{{item.path}}">{{item.title}}</a></td>
       <td class="post-date">{{item.date}}</td>
       <td class="post-tags">
-        <a class="post-tag-href" href="#/{{tag}}" ng-repeat="tag in item.tags">
+        <a class="post-tag-href" href="#/tag/{{tag}}" ng-repeat="tag in item.tags">
           {{tag}};
         </a>
       </td>

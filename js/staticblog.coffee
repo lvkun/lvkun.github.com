@@ -14,20 +14,19 @@ app = angular.module('blog', ['ngSanitize'])
         .config(['$routeProvider', ($routeProvider) ->
             $routeProvider
                 .when("", {templateUrl: "partials/index-list.html"})
-                .when("/:tag", {templateUrl: "partials/index-list.html"})
+                .when("/tag/:tag", {templateUrl: "partials/index-list.html"})
+                .when("/resume", {templateUrl: "partials/resume.html"})
                 .when("/post/:postPath", {templateUrl: "partials/post.html"})
-        ]).directive('ngMarkdown',
-            () ->
-                return (scope, element, attrs) ->
+        ]).directive('ngMarkdown', () ->
+            return (scope, element, attrs) ->
+                scope.$watch( attrs.ngMarkdown, (value) ->
+                    if value?
+                        html = converter.makeHtml value
+                        element.html html
 
-                    scope.$watch( attrs.ngMarkdown, (value) ->
-                        if value?
-                            html = converter.makeHtml value
-                            element.html html
-
-                            for el in document.body.querySelectorAll('pre code')
-                                hljs.highlightBlock el
-                    )
+                        for el in document.body.querySelectorAll('pre code')
+                            hljs.highlightBlock el
+                )
         ).factory("indexService", ($http) ->
             indexService = {
                 async : () ->
@@ -39,9 +38,23 @@ app = angular.module('blog', ['ngSanitize'])
             return indexService
         )
 
-app.controller 'HeaderCtrl', ($scope, $http) ->
+app.controller 'HeaderCtrl', ($scope, $http, $location) ->
     $http.get("config.json").success (data) ->
+
+        getState = (path) ->
+            items = path.split("/")
+
+            if items.length > 1 and items[items.length-1] == "resume"
+                return "Resume"
+
+            return "Blog"
+
+        $scope.state = getState($location.path())
         $scope.config = data
+
+        $scope.$on("$locationChangeSuccess", (event, newLoc, oldLoc) ->
+            $scope.state = getState($location.path())
+        )
 
 app.controller 'IndexListCtrl', ($scope, $routeParams, indexService) ->
 
@@ -56,7 +69,7 @@ app.controller 'IndexListCtrl', ($scope, $routeParams, indexService) ->
                 if tags[tag]
                     tags[tag]["count"] += 1
                 else
-                    tags[tag] = {"text" : tag, "href" : "#/" + tag, "count" : 1}
+                    tags[tag] = {"text" : tag, "href" : "#/tag/" + tag, "count" : 1}
 
             tags["All"] = {"text" : "All", "href" : "#/", "count" : indexData.length}
             return tags
@@ -98,3 +111,11 @@ app.controller 'PostCtrl', ($scope, $http, $routeParams, indexService) ->
                     break
                 i++
         )
+
+app.controller 'ResumeCtrl', ($scope, $http) ->
+
+    $http.get("resume.json").success (data) ->
+
+        $scope.resume = data
+
+

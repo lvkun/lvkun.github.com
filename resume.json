@@ -1,0 +1,79 @@
+{
+    "basicInfo" : {
+        "name" : "Bruce Lv",
+        "description" : "One programer who enjoys programming & expects challenges",
+        "mail" : "lvkun.buaa@gmail.com"
+    },
+    "education" : [
+        {
+            "period" : "2005/09 - 2008/01",
+            "university" : "Beihang University",
+            "college" : "Robotics Institute",
+            "description" : "Master Degree in Electronic and Mechanical Engineering"
+        },
+        {
+            "period" : "2000/09 - 2004/07",
+            "university" : "Beihang University",
+            "college" : "School of Mechanical Engineer & Automation",
+            "description" : "Bachelor Degree in Mechanical Engineering and Automation"
+        }
+    ],
+    "workExperience" : [
+        {
+            "period" : "2012/06 – Now",
+            "company" : "Nokia MP",
+            "title" : "Senior Software Engineer",
+            "description" : [
+                "Responsible for new concept handwriting Chinese input method on new s40 platform",
+                "Demo version had been completed in two weeks and shown in department all-hands meeting",
+                "Final version has been accepted by product (Asha 501), and no bugs reported after development finished"
+            ]
+        },
+        {
+            "period" : "2010/07 – 2012/05",
+            "company" : "Nokia MP",
+            "title" : "Software Engineer",
+            "description" : [
+                "Responsible for Chinese input development in S40 full-touch product",
+                "Achieved 0 bugs target two month ahead"
+            ]
+        },
+        {
+            "period" : "2008/01 – 2010/06",
+            "company" : "Dayang Technology Development Inc",
+            "title" : "Software Engineer",
+            "description" : [
+                "Responsible for Edit-Net related product & project development",
+                "Finished BTV project development by myself, praised by client",
+                "Leading new staff in several projects"
+            ]
+        }
+    ],
+    "skills" : [
+        {
+            "category" : "Programming language",
+            "items" : [
+                {"name" : "C++", "proficiency" : "proficient"},
+                {"name" : "C", "proficiency" : "proficient"},
+                {"name" : "Scheme", "proficiency" : "proficient"},
+                {"name" : "Python", "proficiency" : "proficient"},
+                {"name" : "C#", "proficiency" : "familiar"},
+                {"name" : "Java", "proficiency" : "familiar"},
+                {"name" : "C#", "proficiency" : "familiar"},
+                {"name" : "Javascript", "proficiency" : "familiar"}
+            ]
+        },
+        {
+            "category" : "Version Control",
+            "items" : [
+                {"name" : "Git", "proficiency" : "proficient"},
+                {"name" : "SVN", "proficiency" : "familiar"},
+                {"name" : "Synergy", "proficiency" : "familiar"}
+            ]
+        }
+    ],
+    "projects" : [
+        {"name" : "lvkun.github.io", "description" : "A static blog on github. Using JavaScript to load blog article in Markdown format and render it dynamically."},
+        {"name" : "nw-ace", "description" : "An editor based on ACE-editor & Node-Webkit."}
+    ]
+}

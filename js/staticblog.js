@@ -24,8 +24,10 @@
     '$routeProvider', function($routeProvider) {
       return $routeProvider.when("", {
         templateUrl: "partials/index-list.html"
-      }).when("/:tag", {
+      }).when("/tag/:tag", {
         templateUrl: "partials/index-list.html"
+      }).when("/resume", {
+        templateUrl: "partials/resume.html"
       }).when("/post/:postPath", {
         templateUrl: "partials/post.html"
       });
@@ -61,9 +63,22 @@
     return indexService;
   });
 
-  app.controller('HeaderCtrl', function($scope, $http) {
+  app.controller('HeaderCtrl', function($scope, $http, $location) {
     return $http.get("config.json").success(function(data) {
-      return $scope.config = data;
+      var getState;
+      getState = function(path) {
+        var items;
+        items = path.split("/");
+        if (items.length > 1 && items[items.length - 1] === "resume") {
+          return "Resume";
+        }
+        return "Blog";
+      };
+      $scope.state = getState($location.path());
+      $scope.config = data;
+      return $scope.$on("$locationChangeSuccess", function(event, newLoc, oldLoc) {
+        return $scope.state = getState($location.path());
+      });
     });
   });
 
@@ -85,7 +100,7 @@
           } else {
             tags[tag] = {
               "text": tag,
-              "href": "#/" + tag,
+              "href": "#/tag/" + tag,
               "count": 1
             };
           }
@@ -138,6 +153,13 @@
         }
         return _results;
       });
+    });
+  });
+
+  app.controller('ResumeCtrl', function($scope, $http) {
+    return $http.get("resume.json").success(function(data) {
+      $scope.data = data;
+      return console.log($scope);
     });
   });
 
