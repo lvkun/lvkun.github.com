@@ -158,8 +158,7 @@
 
   app.controller('ResumeCtrl', function($scope, $http) {
     return $http.get("resume.json").success(function(data) {
-      $scope.data = data;
-      return console.log($scope);
+      return $scope.resume = data;
     });
   });
 
