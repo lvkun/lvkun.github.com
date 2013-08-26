@@ -32,11 +32,15 @@
 
 ### 开始挖坑
 
-接下来准备利用业余时间写一个基于 [nodejs] 和 [ACE] 的编辑器。已经有很多非常优秀的编辑器（如 vim ，emacs ，Sublime Text等）和IDE（Visual Studio ，Eclipse），按理说不应该再重新造轮子。
+接下来准备利用业余时间写一个基于 [node-webkit] 和 [ACE] 的编辑器。已经有很多非常优秀的编辑器（如 vim ，emacs ，Sublime Text等）和IDE（Visual Studio ，Eclipse），按理说不应该再重新造轮子。
 不过我这次想写一个具有以下优点通用的插件框架：
 
 1. 编写插件更加容易（采用js+html+css方式，并且支持调用nodejs）
 
 2. 实现更加丰富的界面交互效果
-   
-   其实 [Sublime Text] 插件开发已经很方便了，但是 [Sublime Text] 插件输出非常单一，只能以文本或者列表形式。在我设想的框架下，插件可以通过网页方式输出结果以及进行交互，完全不受限制，甚至可以访问网络，或者建立本地数据库。
+
+其实 [Sublime Text] 插件开发已经很方便了，但是 [Sublime Text] 插件输出非常单一，只能以文本或者列表形式。在我设想的框架下，插件可以通过网页方式输出结果以及进行交互，完全不受限制，甚至可以访问网络，或者建立本地数据库。
+
+[ACE]:http://ace.c9.io/
+[node-webkit]:https://github.com/rogerwang/node-webkit
+[Sublime Text]:http://www.sublimetext.com/
