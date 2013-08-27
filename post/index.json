@@ -1,5 +1,10 @@
 [
     {
+        "title": "博客代码更新",
+        "path": "2013-08-26-blog-code-changes",
+        "tags": ["blog", "Angularjs"],
+        "date": "2013-08-26"
+    },{
         "title": "杂记",
         "path": "2013-08-11-things-done-after-last-post",
         "tags": ["blog", "Coursera","IDE"],
