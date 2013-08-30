@@ -26,6 +26,8 @@ app = angular.module('blog', ['ngSanitize'])
 
                         for el in document.body.querySelectorAll('pre code')
                             hljs.highlightBlock el
+
+                        MathJax.Hub.Queue ["Typeset",MathJax.Hub]
                 )
         ).factory("indexService", ($http) ->
             indexService = {

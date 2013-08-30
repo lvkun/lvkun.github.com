@@ -35,17 +35,16 @@
   ]).directive('ngMarkdown', function() {
     return function(scope, element, attrs) {
       return scope.$watch(attrs.ngMarkdown, function(value) {
-        var el, html, _i, _len, _ref, _results;
+        var el, html, _i, _len, _ref;
         if (value != null) {
           html = converter.makeHtml(value);
           element.html(html);
           _ref = document.body.querySelectorAll('pre code');
-          _results = [];
           for (_i = 0, _len = _ref.length; _i < _len; _i++) {
             el = _ref[_i];
-            _results.push(hljs.highlightBlock(el));
+            hljs.highlightBlock(el);
           }
-          return _results;
+          return MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
         }
       });
     };
