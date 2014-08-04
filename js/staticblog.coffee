@@ -11,7 +11,8 @@ resetDisqus = (identifier) ->
 
 converter = new Showdown.converter()
 app = angular.module('blog', ['ngSanitize'])
-        .config(['$routeProvider', ($routeProvider) ->
+        .config(['$routeProvider', '$locationProvider',($routeProvider, $locationProvider) ->
+            $locationProvider.html5Mode(false).hashPrefix('!');
             $routeProvider
                 .when("", {templateUrl: "partials/index-list.html"})
                 .when("/tag/:tag", {templateUrl: "partials/index-list.html"})
@@ -39,6 +40,10 @@ app = angular.module('blog', ['ngSanitize'])
             }
             return indexService
         )
+
+app.run ($rootScope) ->
+    $rootScope.$on '$routeChangeStart', (next, current) ->
+        resetDisqus location.href
 
 app.controller 'HeaderCtrl', ($scope, $http, $location) ->
     $http.get("config.json").success (data) ->
@@ -71,9 +76,9 @@ app.controller 'IndexListCtrl', ($scope, $routeParams, indexService) ->
                 if tags[tag]
                     tags[tag]["count"] += 1
                 else
-                    tags[tag] = {"text" : tag, "href" : "#/tag/" + tag, "count" : 1}
+                    tags[tag] = {"text" : tag, "href" : "#!/tag/" + tag, "count" : 1}
 
-            tags["All"] = {"text" : "All", "href" : "#/", "count" : indexData.length}
+            tags["All"] = {"text" : "All", "href" : "#!/", "count" : indexData.length}
             return tags
 
         $scope.indexList = data
@@ -106,9 +111,9 @@ app.controller 'PostCtrl', ($scope, $http, $routeParams, indexService) ->
                     $scope.nextPostPath = ""
 
                     if data[i-1]?
-                        $scope.prevPostPath= "#/post/" + data[i-1].path
+                        $scope.prevPostPath = "#!/post/" + data[i-1].path
                     if data[i+1]?
-                        $scope.nextPostPath= "#/post/" + data[i+1].path
+                        $scope.nextPostPath = "#!/post/" + data[i+1].path
 
                     break
                 i++

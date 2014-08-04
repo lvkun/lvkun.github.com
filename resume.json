@@ -1,7 +1,7 @@
 {
     "basicInfo" : {
         "name" : "Bruce Lv",
-        "description" : "One programer who enjoys programming & expects challenges",
+        "description" : "One programmer who enjoys programming & expects challenges",
         "mail" : "lvkun.buaa@gmail.com"
     },
     "education" : [
@@ -73,7 +73,6 @@
         }
     ],
     "projects" : [
-        {"name" : "lvkun.github.io", "description" : "A static blog on github. Using JavaScript to load blog article in Markdown format and render it dynamically."},
-        {"name" : "nw-ace", "description" : "An editor based on ACE-editor & Node-Webkit."}
+        {"name" : "lvkun.github.io", "description" : "A static blog on github. Using JavaScript to load blog article in Markdown format and render it dynamically."}
     ]
 }
