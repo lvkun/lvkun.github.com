@@ -1,14 +1,3 @@
-resetDisqus = (identifier) ->
-    if DISQUS?
-        DISQUS.reset
-            reload : true,
-            config : ->
-                this.page.identifier = identifier
-                if identifier == ""
-                    this.page.identifier = "index"
-                this.page.url = location.href
-                this.page.title = document.title
-
 converter = new Showdown.converter()
 app = angular.module('blog', ['ngSanitize'])
         .config(['$routeProvider', '$locationProvider',($routeProvider, $locationProvider) ->
@@ -40,10 +29,6 @@ app = angular.module('blog', ['ngSanitize'])
             }
             return indexService
         )
-
-app.run ($rootScope) ->
-    $rootScope.$on '$routeChangeStart', (next, current) ->
-        resetDisqus location.href
 
 app.controller 'HeaderCtrl', ($scope, $http, $location) ->
     $http.get("config.json").success (data) ->
