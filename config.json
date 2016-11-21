@@ -5,6 +5,7 @@
         {"text" : "Blog", "href" : "/"},
         {"text" : "Resume", "href" : "#!/resume"},
         {"text" : "Github", "href" : "https://github.com/lvkun"},
-        {"text" : "微博", "href" : "http://weibo.com/brucelv"}
+        {"text" : "微博", "href" : "http://weibo.com/brucelv"},
+        {"text" : "Mail", "href" : "mailto://lvkun@outlook.com"}
     ]
 }
