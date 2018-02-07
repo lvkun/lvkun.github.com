@@ -1,4 +1,4 @@
-## 初次尝试Chrome扩展开发——以幻灯片方式显示网页内的图片
+# 初次尝试Chrome扩展开发——以幻灯片方式显示网页内的图片
 
 使用Chrome浏览器很长时间了。每次在论坛里看图片的时候，总会觉得广告和文字太多，
 心里想如果能够全屏看图片就好了。
@@ -12,14 +12,14 @@
 本人在工作中做的是桌面和嵌入式开发，只用过C/C++/C#，对javascript/jQuery没有怎么接触过。
 代码中如果存在什么问题，请大家原谅。
 
-### 准备工作
+## 准备工作
 
 首先是需要找一个jQuery的幻灯片插件。在比较几个插件之后，最后选择了[GALLERIA]。
 主要是它提供的全屏模式，比较符合我心中的要求。同时学习下[Chrome扩展开发文档]，熟悉开发流程。
 
-### 正式开始
+## 正式开始
 
-#### 扩展清单文件（manifest.json）
+### 扩展清单文件（manifest.json）
 
 创建imageGallery目录。在该目录下创建文件manifest.json。
 这里面包含了扩展的相关信息，以供Chrome使用。本文只对用到的字段做简单解释，可参见详细的介绍。
@@ -64,7 +64,7 @@
 同时将不同分辨率（16*16,48*48,128*128）的图标拷贝到icons目录下。
 确保manifest.json中指定的文件都存在，不然Chrome将无法载入该扩展。
 
-#### 载入jQuery和Galleria
+### 载入jQuery和Galleria
 
 [下载jQuery]，保存在imageGallery目录下。本扩展中采用的版本是1.4.3。
 [下载GALLERIA],将galleria.js保存在imageGallery目录下。使用fullscreen主题。
@@ -80,7 +80,7 @@
 
 打开任意一个网页，比如http://www.google.com.hk,然后打开开发人员工具，可以看到Console输出“Galleria is imported”，说明Galleria已经被载入了。
 
-#### 使用galleria显示页面中所有图片
+### 使用galleria显示页面中所有图片
 
 移除imageGallery.js之前的测试代码，修改为如下：
 
@@ -89,17 +89,17 @@
                 if($("#img_Gallery").length == 0){
                     // 1. 如果不存在id为img_Gallery节点，则创建
                     $('<div id="img_Gallery"></div>').appendTo($("body"));
-                    
+
                     // 2. 将所有img节点附加img_Gallery
                     $("img").each(function(){
                         $("#img_Gallery").append($(this));
                     });
-                    
+
                     // 3. 使用galleria显示
                     if($("#img_Gallery").children().length >0){
                         Galleria_loadTheme(); // 加载fullscreen theme，与正规的方式不同，
                                               // 对galleria.fullscreen.js做了点修改，方便使用，
-                        
+
                         // 调用galleria
                         $('#img_Gallery').galleria({
                             transition: 'fade', // 过渡效果
@@ -130,7 +130,7 @@
 通过chrome.tabs.executeScript接口，可以在Tab页中执行脚本，null代表当前Tab页。
 重新加载扩展后，单击扩展图标应该就可以将页面内的图片全屏显示。
 
-#### 添加快捷键支持
+### 添加快捷键支持
 
 在imageGallery.js中添加：
 
@@ -143,7 +143,7 @@
 
 当用户按Alt+S时，执行showGallery，将页面内的图片全屏显示。　
 
-#### 为扩展添加选项
+### 为扩展添加选项
 
 在options.html添加：
 
@@ -183,18 +183,18 @@
             </div>
             <script>
             function saveOptions(){
-                localStorage["min_height"] = $("#min_height").val(); 
+                localStorage["min_height"] = $("#min_height").val();
                 localStorage["min_width"] = $("#min_width").val();
                 localStorage["wh_ratio"] = $("#wh_ratio").val();
-                
+
                 reloadOptions();
             }
-            
+
             function reloadOptions(){
                 min_height = localStorage["min_height"] || 200; // 默认值
                 min_width = localStorage["min_width"] || 200; // 默认值
                 wh_ratio = localStorage["wh_ratio"] || 3; // 默认值
-                
+
                 $("#min_height").val(String(min_height));
                 $("#min_width").val(String(min_width));
                 $("#wh_ratio").val(String(wh_ratio));
@@ -234,7 +234,7 @@
             }
         });
 
-### 感受
+## 感受
 
 Chrome扩展的开发基本和网页开发一致，入门门槛还是很低的，也能利用到现有的很多js库。
 简单研究下就可以做出很实用的扩展。大家有兴趣可以交流下。

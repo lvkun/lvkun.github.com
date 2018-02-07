@@ -21,27 +21,31 @@
   <link rel="stylesheet" type="text/css" href="css/style.css"/>
   <!-- Highlight js stylesheet file -->
   <link rel="stylesheet" type="text/css" href="css/default.css"/>
-
-  <script type="text/javascript" src="js/angular.min.js"></script>
-  <script type="text/javascript" src="js/angular-sanitize.min.js"></script>
 </head>
 
 <body>
   <div class="header navbar-fixed-top" ng-controller="HeaderCtrl">
     <ul class="nav nav-pills pull-right">
-      <li ng-repeat="quickLink in config.quickLinks" ng-class="{'active': quickLink.text == state}">
-        <a href="{{quickLink.href}}">{{quickLink.text}}</a>
+      <li>
+        <a href="/">Blog</a>
+      </li>
+      <li>
+        <a href="#!/resume">Resume</a>
+      </li>
+      <li>
+        <a href="https://github.com/lvkun">Github</a>
+      </li>
+      <li>
+        <a href="mailto://lvkun@outlook.com">Mail</a>
       </li>
     </ul>
-
     <h3 class="page-header text-muted">
-      {{config.title}}
-      <small>{{config.subTitle}}</small>
+        步进
+      <small>不积跬步无以至千里</small>
     </h3>
   </div>
   <div id="container" class="container-narrow">
-    <div ng-view></div>
-    <div id="disqus_thread"></div>
+    <div id="content"></div>
     <div id="footer"></div>
   </div>
   <!-- Include javascript files -->
@@ -53,6 +57,6 @@
     });
   </script>
   <script type="text/javascript" src="js/staticblog.js"></script>
-  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script src='js/MathJax/MathJax.js?config=TeX-MML-AM_CHTML'></script>
 </body>
 </html>
