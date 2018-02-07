@@ -1,5 +1,9 @@
 # [关于]
 
+## Android
+
+- [Android 应用开发简介]
+
 ## 博客
 
 - [博客代码更新]
@@ -48,3 +52,4 @@
 [杂记]:#!/2013-08-11-things-done-after-last-post
 [博客代码更新]:#!/2013-08-26-blog-code-changes
 [关于]:#!/about
+[Android 应用开发简介]:#!/2017-02-07-android-dev-intro
