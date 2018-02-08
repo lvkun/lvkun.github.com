@@ -78,7 +78,7 @@
 
 打开chrome://extensions/，选择开发人员模式，点击“载入正在开发的扩展程序...”，选择刚才创建的imageGallery目录。这样imageGallery扩展就被载入。
 
-打开任意一个网页，比如http://www.google.com.hk,然后打开开发人员工具，可以看到Console输出“Galleria is imported”，说明Galleria已经被载入了。
+打开任意一个网页，比如 [Google] ,然后打开开发人员工具，可以看到Console输出“Galleria is imported”，说明Galleria已经被载入了。
 
 ### 使用galleria显示页面中所有图片
 
@@ -141,7 +141,7 @@
             }
         })
 
-当用户按Alt+S时，执行showGallery，将页面内的图片全屏显示。　
+当用户按Alt+S时，执行showGallery，将页面内的图片全屏显示。
 
 ### 为扩展添加选项
 
@@ -218,9 +218,8 @@
 
         chrome.tabs.onUpdated.addListener(loadOptions);
 
-
 监听tabs.onUpdated事件，将配置选项组成一段code，传到当前Tab页中。
-临时想到的办法，不知道有没有更标准的做法。　　
+临时想到的办法，不知道有没有更标准的做法。
 
 最后在imageGallery.js里面根据图片的宽度和高度来过滤：
 
@@ -239,6 +238,7 @@
 Chrome扩展的开发基本和网页开发一致，入门门槛还是很低的，也能利用到现有的很多js库。
 简单研究下就可以做出很实用的扩展。大家有兴趣可以交流下。
 
+[Google]: https://www.google.com
 [GALLERIA]: http://galleria.aino.se/
 [Chrome扩展开发文档]: http://code.google.com/chrome/extensions/docs.html
 [下载jQuery]: http://docs.jquery.com/Downloading_jQuery

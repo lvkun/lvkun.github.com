@@ -1,6 +1,6 @@
-## 翻译： Waf 教程
+# 翻译： Waf 教程
 
-### 前言
+## 前言
 
 本人刚刚接触 Waf ，加之翻译水平一般，有什么错误大家见谅。
 
@@ -8,7 +8,7 @@
 
 [Waf] 是一份用来帮助编译软件工程的软件。本教程的目标是提供如何为一个使用 [Waf] 的工程设置脚本的简要说明。
 
-### Waf 脚本与命令
+## Waf 脚本与命令
 
 软件通常有保存在版本管理系统（git, subversion 等等）的 *源文件（source files）*，以及描述如何处理这些文件的 *编译脚本（build scripts）* （Makefiles，...）。一些 **生成文件（build files）** 通常由 *源文件（source files）* 转换而得，但它们是可选的。在 [Waf] 中编译脚本是那些命名为 'wscript' 的文件。
 
@@ -43,7 +43,7 @@
     configure!
     build!
 
-### 目标
+## 目标
 
 编译系统的一个重要组成部分是声明目标的创建过程。这里有一个非常简单的例子：
 
@@ -69,7 +69,7 @@
     def build(bld):
         bld(rule='echo ${MESSAGE}', always=True)
 
-### 脚本与工具
+## 脚本与工具
 
 为让一个脚本使用子目录下的另一脚本，需要使用方法 ``waflib.Context.Context.recurse`` 及包含 ``wscript`` 文件夹的相对路径。例如，调用 ``src/wscript`` 脚本中 ``build`` 函数，应该这样写：
 
@@ -90,7 +90,7 @@
 用 ``bld`` 声明的任务生成器并没有 **规则（rule）** 关键字，而是用一系列 **特性（features）** 来引用那些调用适当规则的方法。 在这个例子中，一个规则被调用以编译文件，而另一个用来链接目标文件到二进制文件 ``app`` 。
 还存在其他一些工具依赖的 **特性（features）** 如： ``javac``，``cs`` 或者 ``tex`` 。
 
-### 一个同时使用C和C++的工程
+## 一个同时使用C和C++的工程
 
 下面是一个更复杂一些工程的脚本
 
@@ -113,7 +113,7 @@
 
 ``use`` 属性也适用于其他语言如Java（jar 文件之间的依赖）或者C#（程序集之间的依赖）。
 
-### 工程特定扩展
+## 工程特定扩展
 
 *feature* 关键字是高层次的对现有 Waf 方法的引用。例如： **c** feature 会添加方法 ``waflib.Tools.ccroot.apply_incpaths`` 以执行。要添加一个为所有C目标加入任务生成器路径到包含路径的新方法，可以采用如下声明：
 
@@ -128,7 +128,7 @@
     def build(bld):
         tg = bld(features='c', source='main.c', target='app')
 
-这些 *feature* 方法被绑定到类 ``waflib.TaskGen.task_gen`` ，在这个例子中是对象 *tg* 的类。新的 feature 可以以相同的方式声明： 
+这些 *feature* 方法被绑定到类 ``waflib.TaskGen.task_gen`` ，在这个例子中是对象 *tg* 的类。新的 feature 可以以相同的方式声明：
 
     from waflib.TaskGen import feature, after_method
     @feature('debug_tasks')
@@ -153,7 +153,7 @@
 
 这些辅助代码放到单独文件中即可以成为一个 Waf 工具。为了便于部署，新的 Waf 工具甚至可以被添加到 Waf 文件中（参见 http://code.google.com/p/waf/source/browse/trunk/README）。
 
-### 结论
+## 结论
 
 教程到此结束。 更多信息请参考[apis]，[Waf book]，[examples]。
 

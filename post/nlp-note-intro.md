@@ -1,4 +1,4 @@
-## 自然语言处理 简介
+# 自然语言处理 简介
 
 在[Coursera]上面有两门自然语言处理课程：
 
@@ -7,7 +7,7 @@
 
 因为都还没有开课，而[自然语言处理 Dan Jurafsky & Christopher Manning]提供了[Preview]。只能先从此看起。
 
-### 自然语言处理应用
+## 自然语言处理应用
 
 * 自动问答系统（Question answering）：IBM's Watson
 
@@ -48,7 +48,7 @@
   * 总结归纳（Summarization）
   * 对话（Dialog）
 
-### 为什么自然语言处理那么困难
+## 为什么自然语言处理那么困难
 
 歧义（Ambiguity），并且在自然语言文本中是普遍的。
 
@@ -64,12 +64,12 @@
 * 常识（world knowledge）
 * 麻烦的实体名称（tricky entity names） 如：Where is *A Bug's Life* playing...
 
-### 如何处理
+## 如何处理
 
 * 从语言数据中建立的概率模型
 * 粗糙的文本特征
 
-### 课程目标
+## 课程目标
 
 自然语言处理的关键性的理论和方法：
 
@@ -90,5 +90,4 @@
 [自然语言处理 Dan Jurafsky & Christopher Manning]: https://www.coursera.org/course/nlp
 [自然语言处理 Michael Collins]: https://www.coursera.org/course/nlangp
 [Preview]: https://class.coursera.org/nlp/lecture/preview
-
 [Jeopardy!]: http://en.wikipedia.org/wiki/Jeopardy!

@@ -29,7 +29,7 @@
 - 虚拟机
 - JNI
 
-推荐书籍：[Effective java 中文版]，[The Java Language Specification]
+推荐书籍：[Effective java 中文版]，[The Java Language Specification]，[深入理解java虚拟机]
 
 ## Android
 
@@ -78,6 +78,7 @@ Android 编译流程
 [UNIX环境高级编程]:https://book.douban.com/subject/1788421/
 [Effective java 中文版]:https://book.douban.com/subject/3360807/
 [The Java Language Specification]:https://docs.oracle.com/javase/specs/jls/se7/html/index.html
+[深入理解java虚拟机]:https://book.douban.com/subject/24722612/
 [adb]:https://developer.android.com/studio/command-line/adb.html
 [logcat]:https://developer.android.com/studio/command-line/logcat.html
 [systrace]:https://developer.android.com/studio/command-line/systrace.html

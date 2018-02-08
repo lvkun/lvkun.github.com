@@ -1,10 +1,10 @@
-## 杂记
+# 杂记
 
 从三月份开始，家里的事情很多，主要是媳妇怀孕和房子装修，而工作也开始逐渐忙碌起来，所以一直到现在都没有更新博客。
 
 但这期间还是抽时间学了一些东西。
 
-### Coursera
+## Coursera
 
 在 [Coursera] 上面陆陆续续听了几门课，包括：
 
@@ -21,7 +21,7 @@
 [Algorithms, Part II]:https://www.coursera.org/course/algs4partII
 [Algorithms: Design and Analysis, Part 1]:https://www.coursera.org/course/algo
 
-### Bootstrap
+## Bootstrap
 
 业余时间研究了 [Bootstrap] ，将博客的CSS框架 换成了 Bootstrap ，界面看上去简洁清爽很多。
 
@@ -30,7 +30,7 @@
 [Bootstrap]:http://getbootstrap.com/
 [Angularjs]:http://angularjs.org/
 
-### 开始挖坑
+## 开始挖坑
 
 接下来准备利用业余时间写一个基于 [node-webkit] 和 [ACE] 的编辑器。已经有很多非常优秀的编辑器（如 vim ，emacs ，Sublime Text等）和IDE（Visual Studio ，Eclipse），按理说不应该再重新造轮子。
 不过我这次想写一个具有以下优点通用的插件框架：

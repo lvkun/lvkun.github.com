@@ -1,4 +1,4 @@
-## 开源中文输入法
+# 开源中文输入法
 
 在Windows上面中文拼音输入法数不胜数。简单数了一下自己用过，就有六种以上：
 
@@ -22,11 +22,11 @@
 
 关于输入法结构的介绍，可以参见这篇文章[Packaging Input Method Framework and Engines]。
 
-### 输入法框架
+## 输入法框架
 
 Windows系统提供统一的输入法框架，在Windows XP和之前版本是IMM（Input Method Manger），之后是TSF（Text Service Framework）。搜狗，谷歌，QQ等输入法都是在IMM框架下面实现了引擎和界面。而Linux下面输入法框架并不统一，这给兼容性带来很大问题。
 
-#### [IBus]
+### [IBus]
 
 Intelligent Input Bus。相对较新。使用C和Python开发。
 
@@ -45,7 +45,7 @@ Intelligent Input Bus。相对较新。使用C和Python开发。
 * ibus-googlepinyin
   由Android项目移植过来
 
-#### [Scim]
+### [Scim]
 
 Smart Common Input Method。历史比较悠久，曾作为多数Linux发行版默认的中文输入法。使用C++开发。
 
@@ -68,7 +68,7 @@ Smart Common Input Method。历史比较悠久，曾作为多数Linux发行版�
 * fitx
 * scim-sunpinyin
 
-#### [Fcitx]
+### [Fcitx]
 
 小企鹅输入法，Free Chinese Input Toy for X。
 
@@ -86,7 +86,7 @@ Smart Common Input Method。历史比较悠久，曾作为多数Linux发行版�
 * fcitx-sunpinyin
 * fcitx-googlepinyin
 
-#### [Rime]
+### [Rime]
 
 全名中州韵输入法，不仅仅是一个输入法，而是一个输入法算法框架。
 非常有创意地通过YAML格式的配置文件，定制输入法。参见[RimeWithSchemata]
@@ -101,11 +101,11 @@ Smart Common Input Method。历史比较悠久，曾作为多数Linux发行版�
 * Windows: 小狼毫 Weasel
 * Mac OS X: 鼠须管 Squirrel
 
-### 输入法引擎
+## 输入法引擎
 
 除了输入法框架自带的pinyin输入法引擎，[sunpinyin]，[libgooglepinyin]比较常用。
 
-#### [sunpinyin]
+### [sunpinyin]
 
 [sunpinyin]是基于统计语言模型（Statistical Language Model）输入法引擎。支持上述的三个输入法框架。
 Mac下面的FIT输入法也将[sunpinyin]作为输入法引擎。参见[FIT携手sunpinyin]。
@@ -119,23 +119,23 @@ Mac下面的FIT输入法也将[sunpinyin]作为输入法引擎。参见[FIT携�
 * [SunPinyin代码导读 - 语言模型的训练]
 * [SunPinyin代码导读 - 词表与拼音切分]
 
-#### [libgooglepinyin]
+### [libgooglepinyin]
 
 Google pinyin Android 版本（注意不是桌面版本）是曾经开源的，但从2009年后就再未更新。[libgooglepinyin]就是从这个版本移植过来的。同样的项目还有[scim-googlepinyin]、[fcitx-googlepinyin]。
 
 Github上还有反向工程版本[com.google.android.inputmethod.pinyin]
 
-### 其他有趣的项目
+## 其他有趣的项目
 
-#### [libpinyin]
+### [libpinyin]
 
 参见[开源拼音输入法社区的大融合]。[libpinyin]是SunPinyin、Novel Pinyin和iBus-Pinyin社区联合创建的子项目，致力于为中文拼音输入法提供智能整句输入的算法核心，将试图合并novel-pinyin和sunpinyin中的智能拼音整句输入算法部分。
 
-#### [javachinesepinyin]
+### [javachinesepinyin]
 
 > 这是一个中文拼音输入法的Java实现，基于HMM模型，无词典，能完成拼音转汉字，和汉字转拼音的任务，并结合Edit Distance使其具有中文输入纠错功能。
 
-### 结论
+## 结论
 
 输入法相关的开源项目很多，但成熟并实际应用的不多，很多个人项目不再更新，甚至没有内容。今后会继续关注，不断在这篇文章进行更新。
 

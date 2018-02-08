@@ -77,7 +77,6 @@
 
         $('pre code').each(function(i, e) {hljs.highlightBlock(e, '    ')});
 
-
 ## 题外话
 
 本人在工作中一直使用C/C++，网页开发可以说刚刚入门。如果博客上有什么Bug，请及时指出，万分感谢。
