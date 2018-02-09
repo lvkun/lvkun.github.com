@@ -22,7 +22,6 @@ function loadArticle(article, callback) {
 
 function onArticleLoaded(articleText) {
   html = converter.makeHtml(articleText)
-  console.log(document.getElementById("content"))
   document.getElementById("content").innerHTML = html
 
   ref = document.body.querySelectorAll('pre code');

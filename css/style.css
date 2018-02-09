@@ -28,27 +28,7 @@ body {
     background: #fff;
 }
 
-#tag-panel-list {
-    padding: 0;
-    list-style-type: none;
-}
-
 #container {
-    padding-top: 70px;
+    padding-top: 5px;
 }
 
-#tag-panel {
-    margin-bottom: 20px;
-}
-
-.table tbody > tr > th, .table tbody > tr > td {
-     border-top: none;
- }
-
-.btn > a {
-    color: #fff;
-}
-
-.tag-item {
-    margin: 2px;
-}

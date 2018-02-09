@@ -7,6 +7,8 @@
      Remove this if you use the .htaccess -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>步进</title>
   <meta name="description" content="blog" />
   <meta name="author" content="brlv" />
@@ -24,8 +26,8 @@
 </head>
 
 <body>
-  <div class="header navbar-fixed-top" ng-controller="HeaderCtrl">
-    <ul class="nav nav-pills pull-right">
+  <div class="header navbar" ng-controller="HeaderCtrl">
+    <ul class="nav nav-pills pull-right col-12 col-sm-6 ">
       <li>
         <a href="/">Blog</a>
       </li>
@@ -39,8 +41,8 @@
         <a href="mailto://lvkun@outlook.com">Mail</a>
       </li>
     </ul>
-    <h3 class="page-header text-muted">
-        步进
+    <h3 class="page-header text-muted col-12 col-sm-6 col-md-8">
+      步进
       <small>不积跬步无以至千里</small>
     </h3>
   </div>
